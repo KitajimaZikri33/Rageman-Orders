@@ -62,6 +62,7 @@ const getData = () => {
     const dbRef = ref(database, 'drink/');
 
     onValue(dbRef, (snapshot) => {
+        $('#dataTblBody td').remove();
         let rowNum = 1;
 
         snapshot.forEach((childSnapshot) => {
