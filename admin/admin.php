@@ -26,7 +26,6 @@
         border-collapse: collapse;
         width: 100%;
         border-radius: 5px;
-        /* Sesuaikan nilai border-radius sesuai kebutuhan */
         overflow: hidden;
     }
 
@@ -34,24 +33,22 @@
         padding: 15px;
         text-align: left;
         border-bottom: 1px solid #ddd;
-        white-space: nowrap; /* Hindari pemutaran teks */
-            overflow: hidden; /* Sembunyikan teks yang melebihi lebar sel */
+        white-space: nowrap; 
+            overflow: hidden;
             text-overflow: ellipsis;
     }
 
     th {
         background-color: #f2f2f2;
-        /* Warna latar belakang untuk header */
     }
 
     .table-container {
             overflow-x: auto;
-            max-width: 100%; /* Tidak melebihi lebar layar */
+            max-width: 100%;
         }
 
-        /* Round corners untuk tabel jika diinginkan */
         table.rounded {
-            border-radius: 10px; /* Sesuaikan nilai border-radius sesuai kebutuhan */
+            border-radius: 10px;
             overflow: hidden;
         }
     </style>
