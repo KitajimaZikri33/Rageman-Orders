@@ -72,9 +72,9 @@ table.rounded {
                     </div>
                     <div class="card-body">
                         <h5 class="card-title text-start">
-                        <a class="btn btn-outline-dark" href="index.php" role="button">
-                            <i class="bi bi-arrow-left"></i>
-                        </a>
+                            <a class="btn btn-outline-dark" href="index.php" role="button">
+                                <i class="bi bi-arrow-left"></i>
+                            </a>
                         </h5>
 
 
@@ -99,19 +99,149 @@ table.rounded {
                                     <!-- Data will be inserted here -->
                                 </tbody>
                                 <tfooter>
-                                <th scope="col">Total Harga</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col">47.000</th>
+                                    <th scope="col">Total Harga</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col">47.000</th>
                                 </tfooter>
                             </table>
 
-                            <button type="button" class="btn btn-outline-info"><i class="bi bi-plus-circle-fill"></i> Coffee</button>
-                            <button type="button" class="btn btn-outline-info"><i class="bi bi-plus-circle-fill"></i> Minuman</button>
-                            <button type="button" class="btn btn-outline-info"><i class="bi bi-plus-circle-fill"></i> Makanan</button>
-                            <button type="button" class="btn btn-outline-success"><i class="bi bi-cash-coin"></i> Bayar</button>
+
+
+                            <div class="card-body">
+                                <h5 class="card-title text-end mb-1">
+                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        <i class="bi bi-plus-circle-fill"></i>
+                                        Item
+                                    </button>
+
+
+                                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal2">
+                                        <i class="bi bi-cash-coin"></i> Bayar
+                                    </button>
+                                </h5>
+                            </div>
+
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Pembayaran</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="col-md table-responsive table-container">
+                                                <table class="table table-striped table-hover align-middle rounded"
+                                                    id="dataTbl">
+                                                    <thead class="table-info">
+                                                        <tr>
+                                                            <th scope="col" class="col-md-1">No</th>
+                                                            <th scope="col">Menu</th>
+                                                            <th scope="col">Jumlah porsi</th>
+                                                            <th scope="col">Status</th>
+                                                            <th scope="col">Catatan</th>
+                                                            <th scope="col">Total</th>
+                                                            <th scope="col" class="col-md-2">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="dataTblBody">
+                                                        <!-- Data will be inserted here -->
+                                                    </tbody>
+                                                    <tfooter>
+                                                        <th scope="col">Total Harga</th>
+                                                        <th scope="col"></th>
+                                                        <th scope="col"></th>
+                                                        <th scope="col"></th>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">47.000</th>
+                                                    </tfooter>
+                                                </table>
+                                            </div>
+
+                                            <h4 style="color: salmon;">Apakah Anda Yakin Ingin Melakukan Pembayaran?</h4>
+
+                                            <div class="form-floating mb-3">
+                                                <input type="email" class="form-control" id="bayar"
+                                                    placeholder="name@example.com">
+                                                <label for="bayar">Nominal Bayar</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Item</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="row g-2 mb-3">
+                                                <div class="col-md">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>Kategori Menu</option>
+                                                        <option value="1">Coffee</option>
+                                                        <option value="2">Minuman</option>
+                                                        <option value="3">Makanan</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>Menu Pesanan</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row g-2">
+                                                <div class="col-md">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="number" class="form-control" id="porsi"
+                                                            placeholder="name@example.com">
+                                                        <label for="floatingInput">Jumlah Porsi</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" id="catatan"
+                                                            placeholder="name@example.com">
+                                                        <label for="floatingInput">Catatan</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
 
                         </div>
                     </div>
