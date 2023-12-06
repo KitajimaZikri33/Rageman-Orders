@@ -89,8 +89,8 @@ table.rounded {
                                         <th scope="col" class="col-md-1">No</th>
                                         <th scope="col">Menu</th>
                                         <th scope="col">Jumlah porsi</th>
-                                        <th scope="col">Status</th>
                                         <th scope="col">Catatan</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col">Total</th>
                                         <th scope="col" class="col-md-2">Action</th>
                                     </tr>
@@ -113,9 +113,21 @@ table.rounded {
                             <div class="card-body">
                                 <h5 class="card-title text-end mb-1">
                                     <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
+                                        data-bs-target="#exampleModalCoffee">
                                         <i class="bi bi-plus-circle-fill"></i>
-                                        Item
+                                        Add Coffee
+                                    </button>
+
+                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModalDrink">
+                                        <i class="bi bi-plus-circle-fill"></i>
+                                        Add Minuman
+                                    </button>
+
+                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModalFood">
+                                        <i class="bi bi-plus-circle-fill"></i>
+                                        Add Makanan
                                     </button>
 
 
@@ -148,8 +160,8 @@ table.rounded {
                                                             <th scope="col" class="col-md-1">No</th>
                                                             <th scope="col">Menu</th>
                                                             <th scope="col">Jumlah porsi</th>
-                                                            <th scope="col">Status</th>
                                                             <th scope="col">Catatan</th>
+                                                            <th scope="col">Status</th>
                                                             <th scope="col">Total</th>
                                                             <th scope="col" class="col-md-2">Action</th>
                                                         </tr>
@@ -186,7 +198,7 @@ table.rounded {
 
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            <div class="modal fade" id="exampleModalCoffee" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
@@ -198,27 +210,112 @@ table.rounded {
                                         <div class="modal-body">
 
                                             <div class="row g-2 mb-3">
+                                                
                                                 <div class="col-md">
-                                                    <select class="form-select" aria-label="Default select example">
-                                                        <option selected>Kategori Menu</option>
-                                                        <option value="1">Coffee</option>
-                                                        <option value="2">Minuman</option>
-                                                        <option value="3">Makanan</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md">
-                                                    <select class="form-select" aria-label="Default select example">
+                                                    <select class="form-select" aria-label="Default select example" id="menuCoffee">
                                                         <option selected>Menu Pesanan</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
 
 
                                             <div class="row g-2">
+                                                <div class="col-md-2">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="number" class="form-control" id="porsi"
+                                                            placeholder="name@example.com">
+                                                        <label for="floatingInput">Jumlah Porsi</label>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" id="catatan"
+                                                            placeholder="name@example.com">
+                                                        <label for="floatingInput">Catatan</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalDrink" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Item</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="row g-2 mb-3">
+                                                
+                                                <div class="col-md">
+                                                    <select class="form-select" aria-label="Default select example" id="menuDrink">
+                                                        <option selected>Menu Pesanan</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row g-2">
+                                                <div class="col-md-2">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="number" class="form-control" id="porsi"
+                                                            placeholder="name@example.com">
+                                                        <label for="floatingInput">Jumlah Porsi</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" id="catatan"
+                                                            placeholder="name@example.com">
+                                                        <label for="floatingInput">Catatan</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalFood" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Item</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="row g-2 mb-3">
+                                                
+                                                <div class="col-md">
+                                                    <select class="form-select" aria-label="Default select example" id="menuFood">
+                                                        <option selected>Menu Pesanan</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row g-2">
+                                                <div class="col-md-2">
                                                     <div class="form-floating mb-3">
                                                         <input type="number" class="form-control" id="porsi"
                                                             placeholder="name@example.com">
@@ -243,13 +340,14 @@ table.rounded {
 
 
 
+
                         </div>
                     </div>
 
                 </div>
             </div>
-
-            <?php include 'config_order.php' ?>
+            
+            <?php include 'script/config_order_item.php' ?>
         </div>
     </div>
 

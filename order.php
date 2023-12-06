@@ -119,4 +119,4 @@
     </div>
 </div>
 
-<?php include 'config_order.php' ?>
+<?php include 'script/config_order.php' ?>
