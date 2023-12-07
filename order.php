@@ -6,7 +6,7 @@
         <div class="card-body">
             <h5 class="card-title text-end"><button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
-                    Tambah Pesanan
+                    Tambah Order
                 </button></h5>
             <!-- Button trigger modal -->
 
@@ -29,7 +29,7 @@
                                         <div class='col-sm'>
                                             <div class="form-group">
                                                 <div class='input-group date' id='datetimepicker'>
-                                                    <input type='text' class="form-control" id='datetimeDisplay' readonly>
+                                                    <input type='text' class="form-control" id='datetimeDisplay' disabled>
                                                    
                                                 </div>
                                             </div>
@@ -105,7 +105,7 @@
                             <th scope="col" class="col-md-1">No</th>
                             <th scope="col">Name</th>
                             <th scope="col">Meja</th>
-                            <th scope="col">Date/Time</th>
+                            <th scope="col">Waktu Order</th>
                             <th scope="col" class="col-md-2">Action</th>
                         </tr>
                     </thead>

@@ -78,6 +78,24 @@ table.rounded {
                         </h5>
 
 
+                        <div class="row g-2 mb-2">
+                            <div class="col-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="namaPelanggan"
+                                        placeholder="name@example.com" value="<?php ?>" disabled>
+                                    <label for="floatingInputGrid">Nama Pelanggan</label>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="nomorMeja"
+                                        placeholder="name@example.com" disabled>
+                                    <label for="floatingInputGrid">Nomor Meja</label>
+                                </div>
+                            </div>
+                        </div>
+
+
 
 
 
@@ -104,7 +122,7 @@ table.rounded {
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
-                                    <th scope="col">47.000</th>
+                                    <th id="totalHargaFooter" scope="col"></th>
                                 </tfooter>
                             </table>
 
@@ -180,7 +198,8 @@ table.rounded {
                                                 </table>
                                             </div>
 
-                                            <h4 style="color: salmon;">Apakah Anda Yakin Ingin Melakukan Pembayaran?</h4>
+                                            <h4 style="color: salmon;">Apakah Anda Yakin Ingin Melakukan Pembayaran?
+                                            </h4>
 
                                             <div class="form-floating mb-3">
                                                 <input type="email" class="form-control" id="bayar"
@@ -198,8 +217,8 @@ table.rounded {
 
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCoffee" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
+                            <div class="modal fade" id="exampleModalCoffee" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -210,11 +229,12 @@ table.rounded {
                                         <div class="modal-body">
 
                                             <div class="row g-2 mb-3">
-                                                
+
                                                 <div class="col-md">
-                                                    <select class="form-select" aria-label="Default select example" id="menuCoffee">
+                                                    <select class="form-select" aria-label="Default select example"
+                                                        id="menuCoffee">
                                                         <option selected>Menu Pesanan</option>
-                                                        
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -225,7 +245,7 @@ table.rounded {
                                                     <div class="form-floating mb-3">
                                                         <input type="number" class="form-control" id="porsi"
                                                             placeholder="name@example.com">
-                                                        <label for="floatingInput">Jumlah Porsi</label>
+                                                        <label for="floatingInput" value="1">Jumlah Porsi</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md">
@@ -236,21 +256,22 @@ table.rounded {
                                                     </div>
                                                 </div>
 
-                                               <p>Name : <span id="itemName"></span></p>
-                                               <p>Name : <span id="itemPrice"></span></p>
+                                                <span id="itemName" hidden></span>
+                                                <span type="number" id="itemPrice" hidden></span>
 
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" id="submitButton" class="btn btn-primary">Save</button>
+                                            <button type="button" id="submitButton"
+                                                class="btn btn-primary">Save</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModalDrink" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
+                            <div class="modal fade" id="exampleModalDrink" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -261,11 +282,12 @@ table.rounded {
                                         <div class="modal-body">
 
                                             <div class="row g-2 mb-3">
-                                                
+
                                                 <div class="col-md">
-                                                    <select class="form-select" aria-label="Default select example" id="menuDrink">
+                                                    <select class="form-select" aria-label="Default select example"
+                                                        id="menuDrink">
                                                         <option selected>Menu Pesanan</option>
-                                                        
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -274,30 +296,35 @@ table.rounded {
                                             <div class="row g-2">
                                                 <div class="col-md-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="number" class="form-control" id="porsi"
-                                                            placeholder="name@example.com">
+                                                        <input type="number" class="form-control" id="porsi2"
+                                                            placeholder="name@example.com" value="1">
                                                         <label for="floatingInput">Jumlah Porsi</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="catatan"
+                                                        <input type="text" class="form-control" id="catatan2"
                                                             placeholder="name@example.com">
                                                         <label for="floatingInput">Catatan</label>
                                                     </div>
                                                 </div>
+
+                                                <span id="itemName2" hidden></span>
+                                                <span type="number" id="itemPrice2" hidden></span>
+
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">Save</button>
+                                            <button type="button" id="submitButton2"
+                                                class="btn btn-primary">Save</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModalFood" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
+                            <div class="modal fade" id="exampleModalFood" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -308,11 +335,12 @@ table.rounded {
                                         <div class="modal-body">
 
                                             <div class="row g-2 mb-3">
-                                                
+
                                                 <div class="col-md">
-                                                    <select class="form-select" aria-label="Default select example" id="menuFood">
+                                                    <select class="form-select" aria-label="Default select example"
+                                                        id="menuFood">
                                                         <option selected>Menu Pesanan</option>
-                                                        
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -321,22 +349,27 @@ table.rounded {
                                             <div class="row g-2">
                                                 <div class="col-md-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="number" class="form-control" id="porsi"
-                                                            placeholder="name@example.com">
+                                                        <input type="number" class="form-control" id="porsi3"
+                                                            placeholder="name@example.com" value="1">
                                                         <label for="floatingInput">Jumlah Porsi</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="catatan"
+                                                        <input type="text" class="form-control" id="catatan3"
                                                             placeholder="name@example.com">
                                                         <label for="floatingInput">Catatan</label>
                                                     </div>
                                                 </div>
+
+                                                <span id="itemName3" hidden></span>
+                                                <span type="number" id="itemPrice3" hidden></span>
+
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">Save</button>
+                                            <button type="button" id="submitButton3"
+                                                class="btn btn-primary">Save</button>
                                         </div>
                                     </div>
                                 </div>
@@ -350,7 +383,7 @@ table.rounded {
 
                 </div>
             </div>
-            
+
             <?php include 'script/config_order_item.php' ?>
         </div>
     </div>
