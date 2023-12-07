@@ -11,12 +11,12 @@
 </head>
 
 <style>
-#dataTblBody td:first-child {
+#ordersTableBody td:first-child {
     text-align: center;
     font-weight: bold;
 }
 
-#dataTblBody td:last-child {
+#ordersTableBody td:last-child {
     text-align: center;
 }
 
@@ -95,7 +95,7 @@ table.rounded {
                                         <th scope="col" class="col-md-2">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody id="dataTblBody">
+                                <tbody id="ordersTableBody">
                                     <!-- Data will be inserted here -->
                                 </tbody>
                                 <tfooter>
@@ -235,10 +235,14 @@ table.rounded {
                                                         <label for="floatingInput">Catatan</label>
                                                     </div>
                                                 </div>
+
+                                               <p>Name : <span id="itemName"></span></p>
+                                               <p>Name : <span id="itemPrice"></span></p>
+
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">Save</button>
+                                            <button type="button" id="submitButton" class="btn btn-primary">Save</button>
                                         </div>
                                     </div>
                                 </div>
