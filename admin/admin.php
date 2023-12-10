@@ -15,6 +15,7 @@
         text-align: center;
         font-weight: bold;
     }
+
     #dataTblBody td:last-child {
         text-align: center;
     }
@@ -22,7 +23,7 @@
     #dataTbl th:first-child {
         text-align: center;
     }
-  
+
 
 
     table {
@@ -32,13 +33,14 @@
         overflow: hidden;
     }
 
-    th,td {
+    th,
+    td {
         padding: 15px;
         text-align: left;
         border-bottom: 1px solid #ddd;
-        white-space: nowrap; 
-            overflow: hidden;
-            text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     th {
@@ -46,14 +48,14 @@
     }
 
     .table-container {
-            overflow-x: auto;
-            max-width: 100%;
-        }
+        overflow-x: auto;
+        max-width: 100%;
+    }
 
-        table.rounded {
-            border-radius: 10px;
-            overflow: hidden;
-        }
+    table.rounded {
+        border-radius: 10px;
+        overflow: hidden;
+    }
     </style>
 
 </head>
@@ -87,10 +89,11 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-mC9aaQvwKVpKjWSF8F1bVI6CDhpXnEN9Fjozj5aPiOMk5Frr4cJFCpB2ZH15N7fy" crossorigin="anonymous">
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>
-    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
     <!-- Include jQuery Mask Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 

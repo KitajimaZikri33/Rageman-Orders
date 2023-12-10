@@ -8,6 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+
+
 </head>
 
 <style>
@@ -63,6 +66,7 @@ table.rounded {
     <?php include "header.php" ?>
     <!-- end header -->
 
+
     <div class="container-lg">
         <div class="row mt-2">
             <div class="col-lg">
@@ -77,18 +81,20 @@ table.rounded {
                             </a>
                         </h5>
 
+                        <div id=""></div>
+                        <div id=""></div>
 
                         <div class="row g-2 mb-2">
                             <div class="col-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="namaPelanggan"
-                                        placeholder="name@example.com" value="<?php ?>" disabled>
+                                    <input type="text" class="form-control" id="orderName"
+                                        placeholder="name@example.com" disabled>
                                     <label for="floatingInputGrid">Nama Pelanggan</label>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="nomorMeja"
+                                    <input type="text" class="form-control" id="orderNomor"
                                         placeholder="name@example.com" disabled>
                                     <label for="floatingInputGrid">Nomor Meja</label>
                                 </div>
@@ -244,8 +250,8 @@ table.rounded {
                                                 <div class="col-md-2">
                                                     <div class="form-floating mb-3">
                                                         <input type="number" class="form-control" id="porsi"
-                                                            placeholder="name@example.com">
-                                                        <label for="floatingInput" value="1">Jumlah Porsi</label>
+                                                            placeholder="name@example.com" value="1">
+                                                        <label for="floatingInput">Jumlah Porsi</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md">
@@ -384,7 +390,7 @@ table.rounded {
                 </div>
             </div>
 
-            <?php include 'script/config_order_item.php' ?>
+            <script type="module" src="script/config_order_item.js"></script>
         </div>
     </div>
 
@@ -395,10 +401,14 @@ table.rounded {
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-mC9aaQvwKVpKjWSF8F1bVI6CDhpXnEN9Fjozj5aPiOMk5Frr4cJFCpB2ZH15N7fy" crossorigin="anonymous">
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>
-    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js"></script>
+
+    <!-- Firebase v8.6.8 -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <!-- ... (Tambahkan skrip untuk modul lain yang Anda butuhkan) -->
+
     <!-- Include jQuery Mask Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 </body>

@@ -1,4 +1,3 @@
-<script type="module">
 // Import the functions you need from the SDKs you need
 import {
     initializeApp
@@ -31,6 +30,8 @@ const app = initializeApp(firebaseConfig);
 console.log('Firebase initialized successfully!', app);
 // Get a reference to the database service
 const database = getDatabase(app);
+
+
 
 function fetchDataAndUpdateOptions() {
 
@@ -163,7 +164,7 @@ document.getElementById('submitButton').addEventListener('click', function() {
         selectedItemKey: selectedItemKey
     }).then(() => {
 
-        document.getElementById('porsi').value = '';
+        document.getElementById('porsi').value = '1';
         document.getElementById('catatan').value = '';
         document.getElementById('menuCoffee').value = 'Menu Pesanan';
 
@@ -196,7 +197,7 @@ document.getElementById('submitButton2').addEventListener('click', function() {
         selectedItemKey: selectedItemKey
     }).then(() => {
 
-        document.getElementById('porsi2').value = '';
+        document.getElementById('porsi2').value = '1';
         document.getElementById('catatan2').value = '';
         document.getElementById('menuDrink').value = 'Menu Pesanan';
 
@@ -229,7 +230,7 @@ document.getElementById('submitButton3').addEventListener('click', function() {
         selectedItemKey: selectedItemKey
     }).then(() => {
 
-        document.getElementById('porsi3').value = '';
+        document.getElementById('porsi3').value = '1';
         document.getElementById('catatan3').value = '';
         document.getElementById('menuFood').value = 'Menu Pesanan';
 
@@ -319,6 +320,7 @@ const updateTotalHarga = () => {
 
         // Menghapus karakter 'Rp', mengganti '.' dengan '', dan mengganti ',' dengan '.'
         const cleanedItemPriceText = itemPriceText.replace('Rp', '').replace('.', '').replace(',', '.');
+        
 
         // Mengubah teks menjadi angka
         const itemPrice = parseFloat(cleanedItemPriceText);
@@ -347,31 +349,42 @@ onValue(ref(database, 'order_item/'), () => {
 
 
 
-
-
 getData();
+
+const urlParams = new URLSearchParams(window.location.search);
+const orderId = urlParams.get('orderId');
+const name = decodeURIComponent(urlParams.get('Name'));
+const nomor = decodeURIComponent(urlParams.get('Nomor'));
+
+if (orderId && name && nomor) {
+    const floatingNameInput = document.getElementById('orderName');
+    const floatingNomorInput = document.getElementById('orderNomor');
+    
+    floatingNameInput.value = name;
+    floatingNomorInput.value = nomor;
+} else {
+    // Jika orderId, name, atau nomor tidak ditemukan, tampilkan pesan kesalahan
+    const floatingNameInput = document.getElementById('orderName');
+    floatingNameInput.value = 'Error: Nama tidak diinputkan';
+
+    const floatingNomorInput = document.getElementById('orderNomor');
+    floatingNomorInput.value = 'Error: Nomor meja tidak diinputkan';
+}
 
 
 $(document).ready(function() {
-    // Tambahkan event listener untuk tombol Edit dan Delete
-    $('#ordersTableBody').on('click', '.btn-warning', function() {
-        editData(this);
-    });
-
     $('#ordersTableBody').on('click', '.btn-danger', function() {
         deleteData(this);
     });
 
-    $('#saveChangesButton').on('click', function() {
-        saveEdit();
-    });
+    
 
 });
 
-// Pastikan Anda memanggil fungsi ini setelah halaman sepenuhnya dimuat
+
+
 document.addEventListener('DOMContentLoaded', fetchDataAndUpdateOptions);
 
 document.getElementById('menuCoffee').addEventListener('change', handleSelectChange);
 document.getElementById('menuDrink').addEventListener('change', handleSelectChange2);
 document.getElementById('menuFood').addEventListener('change', handleSelectChange3);
-</script>

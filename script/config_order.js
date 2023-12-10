@@ -1,4 +1,3 @@
-<script type="module">
 // Import the functions you need from the SDKs you need
 import {
     initializeApp
@@ -60,8 +59,25 @@ submitButton.addEventListener('click', (e) => {
 });
 
 
+function viewOrderItems(key, Name, Nomor) {
+    console.log('View button clicked for key:', key);
+    console.log('Name:', Name);
+    console.log('Nomor:', Nomor);
 
-const getData = () => {
+    let encodedName = encodeURIComponent(Name);
+    let encodedNomor = encodeURIComponent(Nomor);
+
+    const url = `order_item.php?orderId=${key}&Name=${encodedName}&Nomor=${encodedNomor}`;
+
+    window.location.href = url;
+}
+
+
+
+
+
+
+function getData() {
     const dataTable = $('#dataTblBody');
 
     dataTable.empty();
@@ -82,7 +98,7 @@ const getData = () => {
                     <td>${childData.Nomor}</td>
                     <td>${childData.DateTime}</td>
                     <td class="d-flex">
-                        <button class="btn btn-primary me-1" onclick="...">
+                        <button class="btn btn-primary me-1" onclick="viewOrderItems('${childKey}', '${childData.Name}', '${childData.Nomor}')">
                             <i class="bi bi-eye"></i>
                         </button>
                         <button class="btn btn-warning me-1" onclick="editData(this)">
@@ -99,7 +115,7 @@ const getData = () => {
             rowNum++;
         });
     });
-};
+}
 
 // Function to open edit modal
 const editData = (button) => {
@@ -192,10 +208,9 @@ async function setCurrentDateTime() {
     }
 }
 
-// Update the displayed time every second
+
 setInterval(setCurrentDateTime, 1000);
 
-// Initial call to set the current date and time
 setCurrentDateTime();
 
 
@@ -203,7 +218,7 @@ setCurrentDateTime();
 
 
 $(document).ready(function() {
-    // Tambahkan event listener untuk tombol Edit dan Delete
+    
     $('#dataTblBody').on('click', '.btn-warning', function() {
         editData(this);
     });
@@ -215,10 +230,21 @@ $(document).ready(function() {
     $('#saveChangesButton').on('click', function() {
         saveEdit();
     });
+    
+    
+    $(document).ready(function() {
+        $('#dataTblBody').on('click', '.btn-primary', function() {
+            const row = $(this).closest('tr');
+            const orderId = row.data('key');
+            const name = row.data('name');
+            const nomor = row.data('nomor');
+            viewOrderItems(orderId, name, nomor);
+        });
+    });
+    
 
 });
 
 document.addEventListener('DOMContentLoaded', function() {
     getData();
 });
-</script>
