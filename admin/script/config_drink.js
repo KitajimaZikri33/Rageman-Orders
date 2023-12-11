@@ -1,4 +1,3 @@
-<script type="module">
 // Import the functions you need from the SDKs you need
 import {
     initializeApp
@@ -37,11 +36,11 @@ submitButton.addEventListener('click', (e) => {
     var Name = document.getElementById('Name').value;
     var Price = document.getElementById('Price').value;
 
-    const dbRef = ref(database, 'coffee');
-    const coffeeRef = push(dbRef);
+    const dbRef = ref(database, 'drink');
+    const drinkRef = push(dbRef);
 
-    alert('Add Coffee Success');
-    set(coffeeRef, {
+    alert('Add Drink Success');
+    set(drinkRef, {
         Name: Name,
         Price: Price
     }).then(() => {
@@ -60,7 +59,7 @@ const getData = () => {
     const dataTable = $('#dataTblBody');
 
     dataTable.empty();
-    const dbRef = ref(database, 'coffee/');
+    const dbRef = ref(database, 'drink/');
 
     onValue(dbRef, (snapshot) => {
         $('#dataTblBody td').remove();
@@ -81,7 +80,7 @@ const getData = () => {
                     <td>${childData.Name}</td>
                     <td>${formattedPrice}</td>
                     <td class="d-flex">
-                        <button class="btn btn-warning me-1" onclick="editData(this)">
+                         <button class="btn btn-warning me-1" onclick="editData(this)">
                             <i class="bi bi-pencil-square"></i>
                         </button>
                         <button class="btn btn-danger me-1" onclick="deleteData(this)">
@@ -123,7 +122,7 @@ const saveEdit = () => {
     const updatedPrice = $('#editPrice').val();
 
     // Perbarui data di Firebase
-    const dbRef = ref(database, 'coffee/' + key);
+    const dbRef = ref(database, 'drink/' + key);
 
     alert('Edit Success');
     set(dbRef, {
@@ -147,7 +146,7 @@ const deleteData = (button) => {
         const row = button.closest('tr');
         const key = row.dataset.key;
 
-        const dbRef = ref(database, 'coffee/' + key);
+        const dbRef = ref(database, 'drink/' + key);
         remove(dbRef).then(() => {
             getData();
         }).catch((error) => {
@@ -175,4 +174,3 @@ $(document).ready(function() {
 document.addEventListener('DOMContentLoaded', function() {
     getData();
 });
-</script>

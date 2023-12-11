@@ -114,8 +114,9 @@ table.rounded {
                                         <th scope="col">Menu</th>
                                         <th scope="col">Jumlah porsi</th>
                                         <th scope="col">Catatan</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Harga</th>
                                         <th scope="col">Total</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col" class="col-md-2">Action</th>
                                     </tr>
                                 </thead>
@@ -390,7 +391,7 @@ table.rounded {
                 </div>
             </div>
 
-            <script type="module" src="script/config_order_item.js"></script>
+            <?php include ('script/config_order_item.php') ?>
         </div>
     </div>
 

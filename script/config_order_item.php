@@ -1,3 +1,4 @@
+<script type="module">
 // Import the functions you need from the SDKs you need
 import {
     initializeApp
@@ -52,7 +53,7 @@ function fetchDataAndUpdateOptions() {
             const menuKey = childSnapshot.key;
             const menuValue = childSnapshot.val().Name;
             const option = document.createElement('option');
-            option.value = menuKey; 
+            option.value = menuKey;
             option.text = menuValue;
             menuSelect.appendChild(option);
         });
@@ -64,7 +65,7 @@ function fetchDataAndUpdateOptions() {
             const menuKey = childSnapshot.key;
             const menuValue = childSnapshot.val().Name;
             const option = document.createElement('option');
-            option.value = menuKey; 
+            option.value = menuKey;
             option.text = menuValue;
             menuSelect2.appendChild(option);
         });
@@ -143,7 +144,6 @@ function handleSelectChange3() {
     });
 }
 
-//submit coffee
 document.getElementById('submitButton').addEventListener('click', function() {
     const itemName = document.getElementById('itemName').textContent;
     const itemPrice = document.getElementById('itemPrice').textContent;
@@ -152,49 +152,59 @@ document.getElementById('submitButton').addEventListener('click', function() {
 
     const selectedItemKey = document.getElementById('menuCoffee').value;
 
-    const orderRef = ref(database, 'order_item');
-    const newOrderRef = push(orderRef);
+    // Dapatkan orderId dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('orderId');
 
-    set(newOrderRef, {
-        itemName: itemName,
-        itemPrice: itemPrice,
-        jumlahPorsi: jumlahPorsi,
-        catatan: catatan,
+    if (orderId) {
+        // Jika orderId ada, simpan pesanan di bawah orderId tersebut
+        const orderItemRef = ref(database, `orders/${orderId}/order_item`);
+        const newOrderItemRef = push(orderItemRef);
 
-        selectedItemKey: selectedItemKey
-    }).then(() => {
+        set(newOrderItemRef, {
+            itemName: itemName,
+            itemPrice: itemPrice,
+            jumlahPorsi: jumlahPorsi,
+            catatan: catatan,
+            selectedItemKey: selectedItemKey
+        }).then(() => {
+            document.getElementById('porsi').value = '1';
+            document.getElementById('catatan').value = '';
+            document.getElementById('menuCoffee').value = 'Menu Pesanan';
 
-        document.getElementById('porsi').value = '1';
-        document.getElementById('catatan').value = '';
-        document.getElementById('menuCoffee').value = 'Menu Pesanan';
-
-
-        $('#exampleModalCoffee').modal('hide');
-
-    }).catch((error) => {
-        console.error("Error saving order: ", error);
-    });
+            $('#exampleModalCoffee').modal('hide');
+        }).catch((error) => {
+            console.error("Error saving order item: ", error);
+        });
+    } else {
+        console.error('No orderId provided in the URL.');
+    }
 });
+
 
 //submit drink//
 document.getElementById('submitButton2').addEventListener('click', function() {
-    const itemName = document.getElementById('itemName2').textContent;
+    const itemName2 = document.getElementById('itemName2').textContent;
     const itemPrice = document.getElementById('itemPrice2').textContent;
-    const jumlahPorsi = document.getElementById('porsi2').value;
-    const catatan = document.getElementById('catatan2').value;
+    const jumlahPorsi2 = document.getElementById('porsi2').value;
+    const catatan2 = document.getElementById('catatan2').value;
 
-    const selectedItemKey = document.getElementById('menuDrink').value;
+    const selectedItemKey2 = document.getElementById('menuDrink').value;
 
-    const orderRef = ref(database, 'order_item');
+    // Dapatkan orderId dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('orderId');
+
+    const orderRef = ref(database, `orders/${orderId}/order_item`);
     const newOrderRef = push(orderRef);
 
     set(newOrderRef, {
-        itemName: itemName,
+        itemName2: itemName2,
         itemPrice: itemPrice,
-        jumlahPorsi: jumlahPorsi,
-        catatan: catatan,
+        jumlahPorsi2: jumlahPorsi2,
+        catatan2: catatan2,
 
-        selectedItemKey: selectedItemKey
+        selectedItemKey2: selectedItemKey2
     }).then(() => {
 
         document.getElementById('porsi2').value = '1';
@@ -211,23 +221,26 @@ document.getElementById('submitButton2').addEventListener('click', function() {
 
 //submit food//
 document.getElementById('submitButton3').addEventListener('click', function() {
-    const itemName = document.getElementById('itemName3').textContent;
+    const itemName3 = document.getElementById('itemName3').textContent;
     const itemPrice = document.getElementById('itemPrice3').textContent;
-    const jumlahPorsi = document.getElementById('porsi3').value;
-    const catatan = document.getElementById('catatan3').value;
+    const jumlahPorsi3 = document.getElementById('porsi3').value;
+    const catatan3 = document.getElementById('catatan3').value;
 
-    const selectedItemKey = document.getElementById('menuFood').value;
+    const selectedItemKey3 = document.getElementById('menuFood').value;
 
-    const orderRef = ref(database, 'order_item');
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('orderId');
+
+    const orderRef = ref(database, `orders/${orderId}/order_item`);
     const newOrderRef = push(orderRef);
 
     set(newOrderRef, {
-        itemName: itemName,
+        itemName3: itemName3,
         itemPrice: itemPrice,
-        jumlahPorsi: jumlahPorsi,
-        catatan: catatan,
+        jumlahPorsi3: jumlahPorsi3,
+        catatan3: catatan3,
 
-        selectedItemKey: selectedItemKey
+        selectedItemKey3: selectedItemKey3
     }).then(() => {
 
         document.getElementById('porsi3').value = '1';
@@ -242,71 +255,188 @@ document.getElementById('submitButton3').addEventListener('click', function() {
     });
 });
 
-
 const getData = () => {
     const dataTable = $('#ordersTableBody');
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('orderId');
+
+    if (!orderId) {
+        console.error('Order ID not found in the URL.');
+        return;
+    }
 
     dataTable.empty();
-    const dbRef = ref(database, 'order_item/');
+    const dbRef = ref(database, 'orders/' + orderId + '/order_item');
 
     onValue(dbRef, (snapshot) => {
-        $('#ordersTableBody td').remove();
+        $('#ordersTableBody tr').remove();
         let rowNum = 1;
 
-        snapshot.forEach((childSnapshot) => {
-            const childKey = childSnapshot.key;
-            const childData = childSnapshot.val();
-            const totalHarga = childData.itemPrice * childData.jumlahPorsi;
+        snapshot.forEach((orderItemSnapshot) => {
+            const orderItemId = orderItemSnapshot.key;
+            const orderItemData = orderItemSnapshot.val();
 
-            const formattedPrice = parseFloat(childData.itemPrice).toLocaleString('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-            });
-            const formattedPrice2 = parseFloat(totalHarga).toLocaleString('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-            });
+            // Check if required properties exist
+            if (
+                orderItemData.hasOwnProperty('itemName') &&
+                orderItemData.hasOwnProperty('jumlahPorsi') &&
+                orderItemData.hasOwnProperty('catatan') &&
+                orderItemData.hasOwnProperty('itemPrice')
+            ) {
+                const harga = parseFloat(orderItemData.itemPrice);
+                const jumlahPorsi = parseInt(orderItemData.jumlahPorsi);
+                const totalHarga = harga * jumlahPorsi;
 
-            // Update the row creation part in getData function
-            var row = `<tr data-key="${childKey}" data-name="${childData.itemName}" data-nomor="${childData.itemPrice}" data-time="${childData.jumlahProsi}"data-time="${childData.catatan}">
-                    <td>${rowNum}</td>
-                    <td>${childData.itemName}</td>
-                    <td>${childData.jumlahPorsi}</td>
-                    <td>${childData.catatan}</td>
-                    <td></td>
-                    <td hidden>${formattedPrice}</td>
-                    <td>${formattedPrice2}</td>
-                    <td class="d-flex">
-                        <!-- ... -->
-                        <button class="btn btn-danger me-1" onclick="deleteData(this)">
-                            <i class="bi bi-trash3"></i>
-                        </button>
-                    </td>
+                const formattedHarga = harga.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                });
+
+                const formattedTotalHarga = totalHarga.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                });
+
+                const row = `
+                    <tr data-key="${orderItemId}" data-name="${orderItemData.itemName}" data-nomor="${orderItemData.itemPrice}" data-time="${orderItemData.jumlahPorsi}" data-time="${orderItemData.catatan}">
+                        <td>${rowNum}</td>
+                        <td>${orderItemData.itemName}</td>
+                        <td>${orderItemData.jumlahPorsi}</td>
+                        <td>${orderItemData.catatan}</td>
+                        <td>${formattedHarga}</td>
+                        <td>${formattedTotalHarga}</td>
+                        <td>...</td>
+                        <td class="d-flex">
+                            <!-- ... -->
+                            <button class="btn btn-danger me-1" onclick="deleteData(this)">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </td>
                     </tr>`;
 
-            $(row).appendTo('#ordersTableBody');
+                $(row).appendTo('#ordersTableBody');
 
-            rowNum++;
+                updateTotalHarga();
+
+                rowNum++;
+            }
+            else if (
+                orderItemData.hasOwnProperty('itemName2') &&
+                orderItemData.hasOwnProperty('jumlahPorsi2') &&
+                orderItemData.hasOwnProperty('catatan2') &&
+                orderItemData.hasOwnProperty('itemPrice')
+            ) {
+                const harga = parseFloat(orderItemData.itemPrice);
+                const jumlahPorsi = parseInt(orderItemData.jumlahPorsi2);
+                const totalHarga = harga * jumlahPorsi;
+
+                const formattedHarga = harga.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                });
+
+                const formattedTotalHarga = totalHarga.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                });
+
+                const row2 = `
+                    <tr data-key="${orderItemId}" data-name="${orderItemData.itemName2}" data-nomor="${orderItemData.itemPrice}" data-time="${orderItemData.jumlahPorsi2}" data-time="${orderItemData.catatan2}">
+                        <td>${rowNum}</td>
+                        <td>${orderItemData.itemName2}</td>
+                        <td>${orderItemData.jumlahPorsi2}</td>
+                        <td>${orderItemData.catatan2}</td>
+                        <td>${formattedHarga}</td>
+                        <td>${formattedTotalHarga}</td>
+                        <td>...</td>
+                        <td class="d-flex">
+                            <!-- ... -->
+                            <button class="btn btn-danger me-1" onclick="deleteData(this)">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+
+                $(row2).appendTo('#ordersTableBody');
+
+                updateTotalHarga();
+
+                rowNum++;
+            }
+
+            else if (
+                orderItemData.hasOwnProperty('itemName3') &&
+                orderItemData.hasOwnProperty('jumlahPorsi3') &&
+                orderItemData.hasOwnProperty('catatan3') &&
+                orderItemData.hasOwnProperty('itemPrice')
+            ) {
+                const harga = parseFloat(orderItemData.itemPrice);
+                const jumlahPorsi = parseInt(orderItemData.jumlahPorsi3);
+                const totalHarga = harga * jumlahPorsi;
+
+                const formattedHarga = harga.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                });
+
+                const formattedTotalHarga = totalHarga.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                });
+
+                const row3 = `
+                    <tr data-key="${orderItemId}" data-name="${orderItemData.itemName3}" data-nomor="${orderItemData.itemPrice}" data-time="${orderItemData.jumlahPorsi3}" data-time="${orderItemData.catatan3}">
+                        <td>${rowNum}</td>
+                        <td>${orderItemData.itemName3}</td>
+                        <td>${orderItemData.jumlahPorsi3}</td>
+                        <td>${orderItemData.catatan3}</td>
+                        <td>${formattedHarga}</td>
+                        <td>${formattedTotalHarga}</td>
+                        <td>...</td>
+                        <td class="d-flex">
+                            <!-- ... -->
+                            <button class="btn btn-danger me-1" onclick="deleteData(this)">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+
+                $(row3).appendTo('#ordersTableBody');
+
+                updateTotalHarga();
+
+                rowNum++;
+            }
         });
     });
 };
 
+// Call the function to fetch data based on the orderId from the URL
+getData();
+
+
 
 const deleteData = (button) => {
-
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('orderId');
     console.log('Delete button clicked');
     if (confirm('Apakah kamu yakin ingin menghapus data ini?')) {
         const row = button.closest('tr');
-        const key = row.dataset.key;
+        const orderItemId = row.dataset.key; // Assuming that data-key contains the orderItemId
 
-        const dbRef = ref(database, 'order_item/' + key);
-        remove(dbRef).then(() => {
-            getData();
-        }).catch((error) => {
-            console.error("Error deleting data: ", error);
-        });
+        const dbRef = ref(database, 'orders/' + orderId + '/order_item/' + orderItemId);
+        
+        remove(dbRef)
+            .then(() => {
+                console.log('Data deleted successfully');
+                getData(); // Refresh the data after deletion
+            })
+            .catch((error) => {
+                console.error("Error deleting data: ", error);
+            });
     }
 };
+
 
 
 const updateTotalHarga = () => {
@@ -320,7 +450,7 @@ const updateTotalHarga = () => {
 
         // Menghapus karakter 'Rp', mengganti '.' dengan '', dan mengganti ',' dengan '.'
         const cleanedItemPriceText = itemPriceText.replace('Rp', '').replace('.', '').replace(',', '.');
-        
+
 
         // Mengubah teks menjadi angka
         const itemPrice = parseFloat(cleanedItemPriceText);
@@ -328,7 +458,7 @@ const updateTotalHarga = () => {
 
         // Memeriksa apakah nilai valid atau tidak
         if (!isNaN(itemPrice) && !isNaN(jumlahPorsi)) {
-            jmlHarga += itemPrice * jumlahPorsi;
+            jmlHarga += itemPrice;
         } else {
             console.error(`Invalid values: itemPrice=${itemPrice}, jumlahPorsi=${jumlahPorsi}`);
         }
@@ -349,7 +479,7 @@ onValue(ref(database, 'order_item/'), () => {
 
 
 
-getData();
+
 
 const urlParams = new URLSearchParams(window.location.search);
 const orderId = urlParams.get('orderId');
@@ -359,7 +489,7 @@ const nomor = decodeURIComponent(urlParams.get('Nomor'));
 if (orderId && name && nomor) {
     const floatingNameInput = document.getElementById('orderName');
     const floatingNomorInput = document.getElementById('orderNomor');
-    
+
     floatingNameInput.value = name;
     floatingNomorInput.value = nomor;
 } else {
@@ -377,7 +507,7 @@ $(document).ready(function() {
         deleteData(this);
     });
 
-    
+
 
 });
 
@@ -388,3 +518,4 @@ document.addEventListener('DOMContentLoaded', fetchDataAndUpdateOptions);
 document.getElementById('menuCoffee').addEventListener('change', handleSelectChange);
 document.getElementById('menuDrink').addEventListener('change', handleSelectChange2);
 document.getElementById('menuFood').addEventListener('change', handleSelectChange3);
+</script>

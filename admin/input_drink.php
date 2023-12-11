@@ -90,4 +90,4 @@
 
     </div>
 </div>
-<?php include 'script/config_drink.php' ?>
+<script type="module" src="script/config_drink.js"></script>

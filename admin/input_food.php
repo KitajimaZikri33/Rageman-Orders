@@ -90,4 +90,4 @@
 
     </div>
 </div>
-<?php include 'script/config_food.php' ?>
+<script type="module" src="script/config_food.js"></script>
