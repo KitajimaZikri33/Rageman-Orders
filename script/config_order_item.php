@@ -149,6 +149,7 @@ document.getElementById('submitButton').addEventListener('click', function() {
     const itemPrice = document.getElementById('itemPrice').textContent;
     const jumlahPorsi = document.getElementById('porsi').value;
     const catatan = document.getElementById('catatan').value;
+    const status = document.getElementById('status').value;
 
     const selectedItemKey = document.getElementById('menuCoffee').value;
 
@@ -166,6 +167,7 @@ document.getElementById('submitButton').addEventListener('click', function() {
             itemPrice: itemPrice,
             jumlahPorsi: jumlahPorsi,
             catatan: catatan,
+            status: status,
             selectedItemKey: selectedItemKey
         }).then(() => {
             document.getElementById('porsi').value = '1';
@@ -188,6 +190,7 @@ document.getElementById('submitButton2').addEventListener('click', function() {
     const itemPrice = document.getElementById('itemPrice2').textContent;
     const jumlahPorsi2 = document.getElementById('porsi2').value;
     const catatan2 = document.getElementById('catatan2').value;
+    const status2 = document.getElementById('status2').value;
 
     const selectedItemKey2 = document.getElementById('menuDrink').value;
 
@@ -203,13 +206,14 @@ document.getElementById('submitButton2').addEventListener('click', function() {
         itemPrice: itemPrice,
         jumlahPorsi2: jumlahPorsi2,
         catatan2: catatan2,
-
+        status2: status2,
         selectedItemKey2: selectedItemKey2
     }).then(() => {
 
         document.getElementById('porsi2').value = '1';
         document.getElementById('catatan2').value = '';
         document.getElementById('menuDrink').value = 'Menu Pesanan';
+        document.getElementById('status2').value = '';
 
 
         $('#exampleModalDrink').modal('hide');
@@ -225,6 +229,7 @@ document.getElementById('submitButton3').addEventListener('click', function() {
     const itemPrice = document.getElementById('itemPrice3').textContent;
     const jumlahPorsi3 = document.getElementById('porsi3').value;
     const catatan3 = document.getElementById('catatan3').value;
+    const status3 = document.getElementById('status3').value;
 
     const selectedItemKey3 = document.getElementById('menuFood').value;
 
@@ -239,7 +244,7 @@ document.getElementById('submitButton3').addEventListener('click', function() {
         itemPrice: itemPrice,
         jumlahPorsi3: jumlahPorsi3,
         catatan3: catatan3,
-
+        status3: status3,
         selectedItemKey3: selectedItemKey3
     }).then(() => {
 
@@ -296,16 +301,19 @@ const getData = () => {
                     style: 'currency',
                     currency: 'IDR',
                 });
-
+                var badgeClass = orderItemData.status === 'Masuk Dapur' ? 'bg-warning' :
+                    orderItemData.status === 'Siap Disajikan' ? 'bg-primary' : '';
                 const row = `
-                    <tr data-key="${orderItemId}" data-name="${orderItemData.itemName}" data-nomor="${orderItemData.itemPrice}" data-time="${orderItemData.jumlahPorsi}" data-time="${orderItemData.catatan}">
+                    <tr data-key="${orderItemId}" data-name="${orderItemData.itemName}" data-nomor="${orderItemData.itemPrice}" data-time="${orderItemData.jumlahPorsi}" data-time="${orderItemData.catatan}" data-status="${orderItemData.status}">
                         <td>${rowNum}</td>
                         <td>${orderItemData.itemName}</td>
                         <td>${orderItemData.jumlahPorsi}</td>
                         <td>${orderItemData.catatan}</td>
                         <td>${formattedHarga}</td>
                         <td>${formattedTotalHarga}</td>
-                        <td>...</td>
+                        <td>
+                            <span class="badge ${badgeClass}">${orderItemData.status}</span>
+                        </td>
                         <td class="d-flex">
                             <!-- ... -->
                             <button class="btn btn-danger me-1" onclick="deleteData(this)">
@@ -319,8 +327,7 @@ const getData = () => {
                 updateTotalHarga();
 
                 rowNum++;
-            }
-            else if (
+            } else if (
                 orderItemData.hasOwnProperty('itemName2') &&
                 orderItemData.hasOwnProperty('jumlahPorsi2') &&
                 orderItemData.hasOwnProperty('catatan2') &&
@@ -339,16 +346,19 @@ const getData = () => {
                     style: 'currency',
                     currency: 'IDR',
                 });
-
+                var badgeClass = orderItemData.status2 === 'Masuk Dapur' ? 'bg-warning' :
+                    orderItemData.status2 === 'Siap Disajikan' ? 'bg-primary' : '';
                 const row2 = `
-                    <tr data-key="${orderItemId}" data-name="${orderItemData.itemName2}" data-nomor="${orderItemData.itemPrice}" data-time="${orderItemData.jumlahPorsi2}" data-time="${orderItemData.catatan2}">
+                    <tr data-key="${orderItemId}" data-name="${orderItemData.itemName2}" data-nomor="${orderItemData.itemPrice}" data-time="${orderItemData.jumlahPorsi2}" data-catatan="${orderItemData.catatan2}" data-status="${orderItemData.status2}">
                         <td>${rowNum}</td>
                         <td>${orderItemData.itemName2}</td>
                         <td>${orderItemData.jumlahPorsi2}</td>
                         <td>${orderItemData.catatan2}</td>
                         <td>${formattedHarga}</td>
                         <td>${formattedTotalHarga}</td>
-                        <td>...</td>
+                        <td>
+                            <span class="badge ${badgeClass}">${orderItemData.status2}</span>
+                        </td>
                         <td class="d-flex">
                             <!-- ... -->
                             <button class="btn btn-danger me-1" onclick="deleteData(this)">
@@ -362,9 +372,7 @@ const getData = () => {
                 updateTotalHarga();
 
                 rowNum++;
-            }
-
-            else if (
+            } else if (
                 orderItemData.hasOwnProperty('itemName3') &&
                 orderItemData.hasOwnProperty('jumlahPorsi3') &&
                 orderItemData.hasOwnProperty('catatan3') &&
@@ -383,16 +391,19 @@ const getData = () => {
                     style: 'currency',
                     currency: 'IDR',
                 });
-
+                var badgeClass = orderItemData.status3 === 'Masuk Dapur' ? 'bg-warning' :
+                    orderItemData.status3 === 'Siap Disajikan' ? 'bg-primary' : '';
                 const row3 = `
-                    <tr data-key="${orderItemId}" data-name="${orderItemData.itemName3}" data-nomor="${orderItemData.itemPrice}" data-time="${orderItemData.jumlahPorsi3}" data-time="${orderItemData.catatan3}">
+                    <tr data-key="${orderItemId}" data-name="${orderItemData.itemName3}" data-nomor="${orderItemData.itemPrice}" data-time="${orderItemData.jumlahPorsi3}" data-catatan="${orderItemData.catatan3}" data-status="${orderItemData.status3}">
                         <td>${rowNum}</td>
                         <td>${orderItemData.itemName3}</td>
                         <td>${orderItemData.jumlahPorsi3}</td>
                         <td>${orderItemData.catatan3}</td>
                         <td>${formattedHarga}</td>
                         <td>${formattedTotalHarga}</td>
-                        <td>...</td>
+                        <td>
+                            <span class="badge ${badgeClass}">${orderItemData.status3}</span>
+                        </td>
                         <td class="d-flex">
                             <!-- ... -->
                             <button class="btn btn-danger me-1" onclick="deleteData(this)">
@@ -425,7 +436,7 @@ const deleteData = (button) => {
         const orderItemId = row.dataset.key; // Assuming that data-key contains the orderItemId
 
         const dbRef = ref(database, 'orders/' + orderId + '/order_item/' + orderItemId);
-        
+
         remove(dbRef)
             .then(() => {
                 console.log('Data deleted successfully');

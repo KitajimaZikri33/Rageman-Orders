@@ -9,16 +9,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 
-    <style>
-            #tb th:first-child{
-              text-align: center;
-              font-weight: bold;
-            }
-            #foodTable td:first-child{
-              text-align: center;
-              font-weight: bold;
-            }
-    </style>
+
 </head>
 
 <body>
@@ -35,27 +26,26 @@
                         Dapur
                     </div>
                     <div class="card-body">
-                      <div class="col-md table-responsive table-container">
-                          <table class="table table-hover rounded" id="tb">
-                              <thead>
-                                  <tr>
-                                      <th scope="col">No</th>
-                                      <th scope="col">Name</th>
-                                      <th scope="col">Porsi</th>
-                                      <th scope="col">Catatan</th>
-                                      <th scope="col">Status</th>
-                                      <th scope="col" class="col-md-2">Action</th>
-                                  </tr>
-                              </thead>
-                              <tbody id="foodTable">
+                        <div class="col-md table-responsive table-container">
+                            <table class="table table-hover rounded" id="tb">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Porsi</th>
+                                        <th scope="col">Catatan</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col" class="col-md-2">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="foodTable">
 
-                              </tbody>
-                          </table>
-                      </div>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
     </div>
 
     <?php include('script/config_food.php') ?>

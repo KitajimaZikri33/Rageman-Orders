@@ -265,6 +265,7 @@ table.rounded {
 
                                                 <span id="itemName" hidden></span>
                                                 <span type="number" id="itemPrice" hidden></span>
+                                                <input type="text" id="status" hidden></input>
 
                                             </div>
                                         </div>
@@ -318,6 +319,7 @@ table.rounded {
 
                                                 <span id="itemName2" hidden></span>
                                                 <span type="number" id="itemPrice2" hidden></span>
+                                                <input type="text" id="status2" hidden></input>
 
                                             </div>
                                         </div>
@@ -371,6 +373,7 @@ table.rounded {
 
                                                 <span id="itemName3" hidden></span>
                                                 <span type="number" id="itemPrice3" hidden></span>
+                                                <input type="text" id="status3" hidden></input>
 
                                             </div>
                                         </div>
