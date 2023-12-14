@@ -8,11 +8,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <!-- Masukkan ini di dalam bagian head tag -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+
+
 
 
 
 </head>
-
+<!-- Masukkan ini sebelum tag </body> untuk skrip JS-nya -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
 #ordersTableBody td:first-child {
     text-align: center;
@@ -81,9 +86,6 @@ table.rounded {
                             </a>
                         </h5>
 
-                        <div id=""></div>
-                        <div id=""></div>
-
                         <div class="row g-2 mb-2">
                             <div class="col-3">
                                 <div class="form-floating">
@@ -137,27 +139,27 @@ table.rounded {
 
                             <div class="card-body">
                                 <h5 class="card-title text-end mb-1">
-                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" id="addCoffeeButton"
                                         data-bs-target="#exampleModalCoffee">
                                         <i class="bi bi-plus-circle-fill"></i>
                                         Add Coffee
                                     </button>
 
-                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" id="addMinumanButton"
                                         data-bs-target="#exampleModalDrink">
                                         <i class="bi bi-plus-circle-fill"></i>
                                         Add Minuman
                                     </button>
 
-                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" id="addMakananButton"
                                         data-bs-target="#exampleModalFood">
                                         <i class="bi bi-plus-circle-fill"></i>
                                         Add Makanan
                                     </button>
 
 
-                                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal2">
+                                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" id="buttonBayar"
+                                        data-bs-target="#modalBayar">
                                         <i class="bi bi-cash-coin"></i> Bayar
                                     </button>
                                 </h5>
@@ -166,12 +168,12 @@ table.rounded {
 
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            <div class="modal fade" id="modalBayar" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
+                                <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Pembayaran</h1>
+                                            <h1 class="modal-title fs-5" id="exampleModalBayar">Pembayaran</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
@@ -179,28 +181,27 @@ table.rounded {
 
                                             <div class="col-md table-responsive table-container">
                                                 <table class="table table-striped table-hover align-middle rounded"
-                                                    id="dataTbl">
+                                                    id="dataTb2">
                                                     <thead class="table-info">
                                                         <tr>
-                                                            <th scope="col" class="col-md-1">No</th>
                                                             <th scope="col">Menu</th>
                                                             <th scope="col">Jumlah porsi</th>
-                                                            <th scope="col">Catatan</th>
-                                                            <th scope="col">Status</th>
+                                                            <th scope="col">Harga</th>
                                                             <th scope="col">Total</th>
-                                                            <th scope="col" class="col-md-2">Action</th>
+                                                            <th scope="col">Harga Total + PPN(10%)</th>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="dataTblBody">
-                                                        <!-- Data will be inserted here -->
+                                                    <tbody id="tbBayar">
+
                                                     </tbody>
                                                     <tfooter>
                                                         <th scope="col">Total Harga</th>
                                                         <th scope="col"></th>
                                                         <th scope="col"></th>
                                                         <th scope="col"></th>
-                                                        <th scope="col"></th>
-                                                        <th scope="col">47.000</th>
+                                                        <th id="totalHargaModal" scope="col"></th>
+                                                        <th id="totalBayar" scope="col"></th>
                                                     </tfooter>
                                                 </table>
                                             </div>
@@ -209,14 +210,14 @@ table.rounded {
                                             </h4>
 
                                             <div class="form-floating mb-3">
-                                                <input type="email" class="form-control" id="bayar"
+                                                <input type="text" class="form-control" id="bayar"
                                                     placeholder="name@example.com">
                                                 <label for="bayar">Nominal Bayar</label>
                                             </div>
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">Save</button>
+                                            <button type="button" id="bayarButton" class="btn btn-success">Bayar</button>
                                         </div>
                                     </div>
                                 </div>

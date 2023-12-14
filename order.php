@@ -30,7 +30,7 @@
                                             <div class="form-group">
                                                 <div class='input-group date' id='datetimepicker'>
                                                     <input type='text' class="form-control" id='datetimeDisplay' disabled>
-                                                   
+
                                                 </div>
                                             </div>
                                         </div>
@@ -55,6 +55,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="text" id="status" hidden></input>
 
                         </div>
                         <div class="modal-footer">
@@ -85,6 +86,7 @@
                                     <label for="editNomor" class="form-label">Nomor</label>
                                 </div>
                                 <input type="hidden" id="datetimeHidden" name="datetimeHidden">
+                                <input type="hidden" id="statusHidden" name="statusHidden">
 
 
                             </form>
@@ -106,6 +108,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Meja</th>
                             <th scope="col">Waktu Order</th>
+                            <th scope="col">Status</th>
                             <th scope="col" class="col-md-2">Action</th>
                         </tr>
                     </thead>
@@ -120,4 +123,4 @@
 </div>
 
 
-<script type="module" src="script/config_order.js"></script>
+<?php include('script/config_order.php') ?>

@@ -1,3 +1,6 @@
+<script type="module">
+
+
 // Import the functions you need from the SDKs you need
 import {
     initializeApp
@@ -34,24 +37,35 @@ const database = getDatabase(app);
 submitButton.addEventListener('click', (e) => {
     var Name = document.getElementById('Name').value;
     var Nomor = document.getElementById('Nomor').value;
-    
+    var Status = document.getElementById('status').value;
+
     // Tambahkan baris ini untuk mendapatkan nilai tanggal dan waktu dari input hidden
     var DateTime = document.getElementById('datetimeDisplay').value;
 
     const dbRef = ref(database, 'orders');
     const ordersRef = push(dbRef);
 
-    alert('Orders Success');
+    Swal.fire({
+    icon: 'success',
+    title: 'Order Berhasil',
+    text: 'Order pesanan berhasil dilakukan.',
+    confirmButtonClass: 'btn btn-success',
+    customClass: {
+        title: 'alert-title',
+        content: 'alert-text'
+    }
+});
     set(ordersRef, {
         Name: Name,
         Nomor: Nomor,
-        DateTime: DateTime
+        DateTime: DateTime,
+        status: Status
     }).then(() => {
         document.getElementById('Name').value = '';
         document.getElementById('Nomor').value = '';
 
         const newOrderRef = ref(database, 'orders/' + newOrderId);
-        
+
         getData();
     }).catch((error) => {
         console.error("Error setting new data: ", error);
@@ -97,6 +111,7 @@ function getData() {
                     <td>${childData.Name}</td>
                     <td>${childData.Nomor}</td>
                     <td>${childData.DateTime}</td>
+                    <td>${childData.status}</td>
                     <td class="d-flex">
                         <button class="btn btn-primary me-1" onclick="viewOrderItems('${childKey}', '${childData.Name}', '${childData.Nomor}')">
                             <i class="bi bi-eye"></i>
@@ -125,12 +140,14 @@ const editData = (button) => {
     const name = row.dataset.name;
     const nomor = row.dataset.nomor;
     const time = row.dataset.time;
+    const status = row.dataset.status;
 
     // Set modal input values
     $('#editKey').val(key);
     $('#editName').val(name);
     $('#editNomor').val(nomor);
     $('#datetimeHidden').val(time);
+    $('#statusHidden').val(status);
 
     // Open the modal
     $('#editModal').modal('show');
@@ -143,15 +160,27 @@ const saveEdit = () => {
     const updatedName = $('#editName').val();
     const updatedNomor = $('#editNomor').val();
     const updateTime = $('#datetimeHidden').val();
+    const updateStatus = $('#statusHidden').val();
 
     // Perbarui data di Firebase
     const dbRef = ref(database, 'orders/' + key);
 
-    alert('Edit Success');
+    Swal.fire({
+    icon: 'success',
+    title: 'Edit Berhasil',
+    text: 'Edit data berhasil dilakukan.',
+    confirmButtonClass: 'btn btn-success',
+    customClass: {
+        title: 'alert-title',
+        content: 'alert-text'
+    }
+});
+
     set(dbRef, {
         Name: updatedName,
         Nomor: updatedNomor,
-        DateTime: updateTime
+        DateTime: updateTime,
+        status: updateStatus
     }).then(() => {
         // Sembunyikan modal setelah berhasil disimpan
         $('#editModal').modal('hide');
@@ -163,20 +192,40 @@ const saveEdit = () => {
 };
 
 const deleteData = (button) => {
-
     console.log('Delete button clicked');
-    if (confirm('Apakah kamu yakin ingin menghapus data ini?')) {
-        const row = button.closest('tr');
-        const key = row.dataset.key;
 
-        const dbRef = ref(database, 'orders/' + key);
-        remove(dbRef).then(() => {
-            getData();
-        }).catch((error) => {
-            console.error("Error deleting data: ", error);
-        });
-    }
+    // Tampilkan pesan konfirmasi penghapusan dengan SweetAlert2
+    Swal.fire({
+        icon: 'warning',
+        title: 'Konfirmasi Penghapusan',
+        text: 'Apakah Anda yakin ingin menghapus data ini?',
+        showCancelButton: true,
+        confirmButtonClass: 'btn btn-danger',  // Untuk menyesuaikan tombol "Ya"
+        cancelButtonClass: 'btn btn-secondary', // Untuk menyesuaikan tombol "Batal"
+        confirmButtonText: 'Ya, Hapus',
+        cancelButtonText: 'Batal',
+        customClass: {
+            title: 'alert-title',  // Kelas kustom untuk judul
+            content: 'alert-text'   // Kelas kustom untuk teks
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const row = button.closest('tr');
+            const key = row.dataset.key;
+
+            const dbRef = ref(database, 'orders/' + key);
+            remove(dbRef)
+                .then(() => {
+                    console.log('Data deleted successfully');
+                    getData(); // Refresh the data after deletion
+                })
+                .catch((error) => {
+                    console.error("Error deleting data: ", error);
+                });
+        }
+    });
 };
+
 
 async function setCurrentDateTime() {
     const datetimeDisplay = document.getElementById('datetimeDisplay');
@@ -218,7 +267,7 @@ setCurrentDateTime();
 
 
 $(document).ready(function() {
-    
+
     $('#dataTblBody').on('click', '.btn-warning', function() {
         editData(this);
     });
@@ -230,8 +279,8 @@ $(document).ready(function() {
     $('#saveChangesButton').on('click', function() {
         saveEdit();
     });
-    
-    
+
+
     $(document).ready(function() {
         $('#dataTblBody').on('click', '.btn-primary', function() {
             const row = $(this).closest('tr');
@@ -241,10 +290,11 @@ $(document).ready(function() {
             viewOrderItems(orderId, name, nomor);
         });
     });
-    
+
 
 });
 
 document.addEventListener('DOMContentLoaded', function() {
     getData();
 });
+</script>

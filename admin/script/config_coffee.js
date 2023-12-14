@@ -39,14 +39,23 @@ submitButton.addEventListener('click', (e) => {
     const dbRef = ref(database, 'coffee');
     const coffeeRef = push(dbRef);
 
-    alert('Add Coffee Success');
+    Swal.fire({
+    icon: 'success',
+    title: 'Add Coffee Berhasil',
+    text: 'Add Coffee berhasil dilakukan.',
+    confirmButtonClass: 'btn btn-success',
+    customClass: {
+        title: 'alert-title',
+        content: 'alert-text'
+    }
+});
     set(coffeeRef, {
         Name: Name,
         Price: Price
     }).then(() => {
         document.getElementById('Name').value = '';
         document.getElementById('Price').value = '';
-        
+
         getData();
     }).catch((error) => {
         console.error("Error setting new data: ", error);
@@ -124,7 +133,16 @@ const saveEdit = () => {
     // Perbarui data di Firebase
     const dbRef = ref(database, 'coffee/' + key);
 
-    alert('Edit Success');
+    Swal.fire({
+    icon: 'success',
+    title: 'Edit Berhasil',
+    text: 'Edit data berhasil dilakukan.',
+    confirmButtonClass: 'btn btn-success',
+    customClass: {
+        title: 'alert-title',
+        content: 'alert-text'
+    }
+});
     set(dbRef, {
         Name: updatedName,
         Price: updatedPrice
@@ -138,22 +156,41 @@ const saveEdit = () => {
     });
 };
 
-// Fungsi untuk menghapus data
+
 const deleteData = (button) => {
-
     console.log('Delete button clicked');
-    if (confirm('Apakah kamu yakin ingin menghapus data ini?')) {
-        const row = button.closest('tr');
-        const key = row.dataset.key;
 
-        const dbRef = ref(database, 'coffee/' + key);
-        remove(dbRef).then(() => {
-            getData();
-        }).catch((error) => {
-            console.error("Error deleting data: ", error);
-        });
-    }
+    Swal.fire({
+        icon: 'warning',
+        title: 'Konfirmasi Penghapusan',
+        text: 'Apakah Anda yakin ingin menghapus data ini?',
+        showCancelButton: true,
+        confirmButtonClass: 'btn btn-danger',
+        cancelButtonClass: 'btn btn-secondary',
+        confirmButtonText: 'Ya, Hapus',
+        cancelButtonText: 'Batal',
+        customClass: {
+            title: 'alert-title',
+            content: 'alert-text'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const row = button.closest('tr');
+            const key = row.dataset.key;
+
+            const dbRef = ref(database, 'coffee/' + key);
+            remove(dbRef)
+                .then(() => {
+                    console.log('Data deleted successfully');
+                    getData(); 
+                })
+                .catch((error) => {
+                    console.error("Error deleting data: ", error);
+                });
+        }
+    });
 };
+
 
 $(document).ready(function() {
     // Tambahkan event listener untuk tombol Edit dan Delete
