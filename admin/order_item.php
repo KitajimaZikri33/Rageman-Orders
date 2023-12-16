@@ -31,9 +31,6 @@
 #dataTbl th:first-child {
     text-align: center;
 }
-.catatan-cell {
-        white-space: pre-line;
-    }
 
 
 
@@ -71,7 +68,7 @@ table.rounded {
 
 <body>
     <!-- header -->
-    <?php include "header.php" ?>
+    <?php include "admin_header.php" ?>
     <!-- end header -->
 
 
@@ -84,7 +81,7 @@ table.rounded {
                     </div>
                     <div class="card-body">
                         <h5 class="card-title text-start">
-                            <a class="btn btn-outline-dark" href="index.php" role="button">
+                            <a class="btn btn-outline-dark" href="admin.php?x=laporan" role="button">
                                 <i class="bi bi-arrow-left"></i>
                             </a>
                         </h5>
@@ -118,11 +115,11 @@ table.rounded {
                                         <th scope="col" class="col-md-1">No</th>
                                         <th scope="col">Menu</th>
                                         <th scope="col">Jumlah porsi</th>
-                                        <th scope="col" class="catatan-cell">Catatan</th>
+                                        <th scope="col">Catatan</th>
                                         <th scope="col">Harga</th>
                                         <th scope="col">Total</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col" class="col-md-2">Action</th>
+
                                     </tr>
                                 </thead>
                                 <tbody id="ordersTableBody">
@@ -135,7 +132,6 @@ table.rounded {
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th id="totalHargaFooter" scope="col"></th>
-                                    <th></th>
                                     <th></th>
                                 </tfooter>
                             </table>

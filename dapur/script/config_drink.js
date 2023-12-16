@@ -1,4 +1,3 @@
-<script type="module">
 import {
   initializeApp,
   getApps,
@@ -140,4 +139,3 @@ $(document).ready(() => {
     updateStatusSiap(orderId, itemId);
   });
 });
-</script>

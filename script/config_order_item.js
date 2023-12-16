@@ -1,5 +1,3 @@
-<script type="module">
-// Import the functions you need from the SDKs you need
 import {
   initializeApp
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
@@ -317,7 +315,7 @@ const getData = () => {
         </td>
         <td class="d-flex">
         <!-- ... -->
-        <button class="btn btn-danger me-1" onclick="deleteData(this)">
+        <button id="delete1" class="btn btn-danger me-1" onclick="deleteData(this)">
         <i class="bi bi-trash3"></i>
         </button>
         </td>
@@ -362,7 +360,7 @@ const getData = () => {
         </td>
         <td class="d-flex">
         <!-- ... -->
-        <button class="btn btn-danger me-1" onclick="deleteData(this)">
+        <button id="delete2" class="btn btn-danger me-1" onclick="deleteData(this)">
         <i class="bi bi-trash3"></i>
         </button>
         </td>
@@ -407,7 +405,7 @@ const getData = () => {
         </td>
         <td class="d-flex">
         <!-- ... -->
-        <button class="btn btn-danger me-1" onclick="deleteData(this)">
+        <button id="delete3" class="btn btn-danger me-1" onclick="deleteData(this)">
         <i class="bi bi-trash3"></i>
         </button>
         </td>
@@ -776,8 +774,10 @@ function disableButtons() {
   $('#addMinumanButton').prop('disabled', true);
   $('#addMakananButton').prop('disabled', true);
   $('#buttonBayar').prop('disabled', true);
-}
 
+
+  localStorage.setItem('buttonsDisabled', 'true');
+}
 
 
 
@@ -788,6 +788,7 @@ $(document).ready(function() {
     deleteData(this);
   });
 
+
 });
 
 document.addEventListener('DOMContentLoaded', fetchDataAndUpdateOptions);
@@ -795,4 +796,3 @@ document.addEventListener('DOMContentLoaded', fetchDataAndUpdateOptions);
 document.getElementById('menuCoffee').addEventListener('change', handleSelectChange);
 document.getElementById('menuDrink').addEventListener('change', handleSelectChange2);
 document.getElementById('menuFood').addEventListener('change', handleSelectChange3);
-</script>

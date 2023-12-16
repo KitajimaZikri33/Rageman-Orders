@@ -123,4 +123,4 @@
 </div>
 
 
-<?php include('script/config_order.php') ?>
+<script type="module" src="script/config_order.js"></script>

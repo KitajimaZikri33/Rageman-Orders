@@ -1,7 +1,3 @@
-<script type="module">
-
-
-// Import the functions you need from the SDKs you need
 import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
@@ -87,10 +83,6 @@ function viewOrderItems(key, Name, Nomor) {
 }
 
 
-
-
-
-
 function getData() {
     const dataTable = $('#dataTblBody');
 
@@ -104,6 +96,11 @@ function getData() {
         snapshot.forEach((childSnapshot) => {
             const childKey = childSnapshot.key;
             const childData = childSnapshot.val();
+
+            if (childData.status === 'Success') {
+                // Jika status adalah 'Success', lanjutkan ke data berikutnya
+                return;
+            }
 
             // Update the row creation part in getData function
             var row = `<tr data-key="${childKey}" data-name="${childData.Name}" data-nomor="${childData.Nomor}" data-time="${childData.DateTime}">
@@ -131,6 +128,7 @@ function getData() {
         });
     });
 }
+
 
 // Function to open edit modal
 const editData = (button) => {
@@ -297,4 +295,3 @@ $(document).ready(function() {
 document.addEventListener('DOMContentLoaded', function() {
     getData();
 });
-</script>
