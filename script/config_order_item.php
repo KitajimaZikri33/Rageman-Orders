@@ -1,3 +1,6 @@
+<script type="module">
+
+
 import {
   initializeApp
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
@@ -594,12 +597,14 @@ const getDataBayar = () => {
         <td>${orderItemData.jumlahPorsi}</td>
         <td>${formattedHarga}</td>
         <td>${formattedTotalHarga}</td>
-        <td>${formattePPN}<td>
+        <td hidden>${formattePPN}<td>
         </tr>`;
 
         $(row).appendTo('#tbBayar');
 
         updateTotalHargaBayar();
+        updateTotalHargaBayar2();
+        updateTotalHargaBayar3();
 
       } else if (
         orderItemData.hasOwnProperty('itemName2') &&
@@ -631,13 +636,15 @@ const getDataBayar = () => {
         <td>${orderItemData.jumlahPorsi2}</td>
         <td>${formattedHarga}</td>
         <td>${formattedTotalHarga}</td>
-        <td>${formattePPN}<td>
+        <td hidden>${formattePPN}<td>
         </td>
         </tr>`;
 
         $(row2).appendTo('#tbBayar');
 
         updateTotalHargaBayar();
+        updateTotalHargaBayar2();
+        updateTotalHargaBayar3();
 
       } else if (
         orderItemData.hasOwnProperty('itemName3') &&
@@ -670,12 +677,14 @@ const getDataBayar = () => {
         <td>${orderItemData.jumlahPorsi3}</td>
         <td>${formattedHarga}</td>
         <td>${formattedTotalHarga}</td>
-        <td>${formattePPN}<td>
+        <td hidden>${formattePPN}<td>
         </tr>`;
 
         $(row3).appendTo('#tbBayar');
 
         updateTotalHargaBayar();
+        updateTotalHargaBayar2();
+        updateTotalHargaBayar3();
       }
     });
   });
@@ -719,10 +728,82 @@ const updateTotalHargaBayar = () => {
   }));
 };
 
+
+const updateTotalHargaBayar2 = () => {
+  console.log('Updating total harga...');
+  const dataTable = $('#tbBayar');
+  let jmlHarga = 0;
+
+  dataTable.find('tr').each((index, row) => {
+    const itemPriceText = $(row).find('td:nth-child(4)').text().trim();
+    const jumlahPorsiText = $(row).find('td:nth-child(2)').text().trim();
+
+    // Menghapus karakter 'Rp', mengganti '.' dengan '', dan mengganti ',' dengan '.'
+    const cleanedItemPriceText = itemPriceText.replace('Rp', '').replace('.', '').replace(',', '.');
+
+
+    // Mengubah teks menjadi angka
+    const itemPrice = parseFloat(cleanedItemPriceText);
+    const jumlahPorsi = parseInt(jumlahPorsiText);
+
+    // Memeriksa apakah nilai valid atau tidak
+    if (!isNaN(itemPrice) && !isNaN(jumlahPorsi)) {
+      jmlHarga += itemPrice;
+    } else {
+      console.error(`Invalid values: itemPrice=${itemPrice}, jumlahPorsi=${jumlahPorsi}`);
+    }
+  });
+  $('#total').text(jmlHarga);
+
+
+  // Update total harga di footer
+  $('#total').text(jmlHarga.toLocaleString('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+  }));
+};
+
+
+const updateTotalHargaBayar3 = () => {
+  console.log('Updating total harga...');
+  const dataTable = $('#tbBayar');
+  let jmlHarga = 0;
+
+  dataTable.find('tr').each((index, row) => {
+    const itemPriceText = $(row).find('td:nth-child(4)').text().trim();
+    const jumlahPorsiText = $(row).find('td:nth-child(2)').text().trim();
+
+    // Menghapus karakter 'Rp', mengganti '.' dengan '', dan mengganti ',' dengan '.'
+    const cleanedItemPriceText = itemPriceText.replace('Rp', '').replace('.', '').replace(',', '.');
+
+
+    // Mengubah teks menjadi angka
+    const itemPrice = parseFloat(cleanedItemPriceText);
+    const jumlahPorsi = parseInt(jumlahPorsiText);
+
+    // Memeriksa apakah nilai valid atau tidak
+    if (!isNaN(itemPrice) && !isNaN(jumlahPorsi)) {
+      jmlHarga += itemPrice * 0.10;
+    } else {
+      console.error(`Invalid values: itemPrice=${itemPrice}, jumlahPorsi=${jumlahPorsi}`);
+    }
+  });
+  $('#totalHargaPPN').text(jmlHarga);
+
+
+  // Update total harga di footer
+  $('#totalHargaPPN').text(jmlHarga.toLocaleString('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+  }));
+};
+
 // Panggil fungsi saat data berubah atau diupdate
 onValue(ref(database, 'order_item/'), () => {
   getDataBayar();
   updateTotalHargaBayar();
+  updateTotalHargaBayar2();
+  updateTotalHargaBayar3();
 });
 
 
@@ -796,3 +877,4 @@ document.addEventListener('DOMContentLoaded', fetchDataAndUpdateOptions);
 document.getElementById('menuCoffee').addEventListener('change', handleSelectChange);
 document.getElementById('menuDrink').addEventListener('change', handleSelectChange2);
 document.getElementById('menuFood').addEventListener('change', handleSelectChange3);
+</script>

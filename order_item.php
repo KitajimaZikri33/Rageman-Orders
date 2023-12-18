@@ -185,7 +185,7 @@ table.rounded {
                                         <div class="modal-body">
 
                                             <div class="col-md table-responsive table-container">
-                                                <table class="table table-striped table-hover align-middle rounded"
+                                                <table class="table table-hover align-middle rounded"
                                                     id="dataTb2">
                                                     <thead class="table-info">
                                                         <tr>
@@ -193,7 +193,7 @@ table.rounded {
                                                             <th scope="col">Jumlah porsi</th>
                                                             <th scope="col">Harga</th>
                                                             <th scope="col">Total</th>
-                                                            <th scope="col">Harga Total + PPN(10%)</th>
+
                                                             <th></th>
                                                         </tr>
                                                     </thead>
@@ -201,14 +201,37 @@ table.rounded {
 
                                                     </tbody>
                                                     <tfooter>
+                                                      <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col"></th>
+                                                        <th scope="col"></th>
+                                                        <th scope="col"></th>
+                                                        <th scope="col"></th>
+                                                      </tr>
+                                                      <tr>
                                                         <th scope="col">Total Harga</th>
                                                         <th scope="col"></th>
                                                         <th scope="col"></th>
-                                                        <th scope="col"></th>
-                                                        <th id="totalHargaModal" scope="col"></th>
+                                                        <th id="total" scope="col"></th>
                                                         <th id="totalBayar" scope="col" hidden></th>
                                                         <th></th>
+                                                        </tr>
+                                                        <tr>
+                                                          <th scope="col">PPN 10%</th>
+                                                          <th scope="col"></th>
+                                                          <th scope="col"></th>
+                                                          <th id="totalHargaPPN" scope="col"></th>
+                                                          <th></th>
+                                                        </tr>
+                                                        <tr>
+                                                          <th scope="col">Total Harga + PPN</th>
+                                                          <th scope="col"></th>
+                                                          <th scope="col"></th>
+                                                          <th id="totalHargaModal" scope="col"></th>
+                                                          <th></th>
+                                                        </tr>
                                                     </tfooter>
+
                                                 </table>
                                             </div>
 
@@ -401,7 +424,7 @@ table.rounded {
                 </div>
             </div>
 
-            <script type="module" src="script/config_order_item.js"></script>
+            <?php include('script/config_order_item.php') ?>
         </div>
     </div>
 
