@@ -807,6 +807,46 @@ onValue(ref(database, 'order_item/'), () => {
 });
 
 
+function cetakStruk() {
+  // Dapatkan konten struk dari tabel atau elemen lain
+  var kontenStruk = $('#dataTb2').clone(); // Anda perlu menyesuaikan dengan struktur HTML sesungguhnya
+
+  // Buat elemen div baru untuk menampilkan struk
+  var divStruk = $('<div id="strukCetak"></div>');
+
+  // Sisipkan konten struk ke dalam div
+  divStruk.append(kontenStruk);
+
+  // Buka jendela cetak
+  var jendelaCetak = window.open('', '_blank');
+
+  // Masukkan konten struk ke dalam jendela cetak
+  jendelaCetak.document.write('<html><head><title>Pembayaran</title><link <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css"></head><body>');
+  jendelaCetak.document.write('<h1 style="text-align: center; font-weight: bold;"><br>RAGEMAN RESTO & COFFEE</h1>');
+  jendelaCetak.document.write('<p style="text-align: center;">Gunungkeling, Cigugur, Kuningan, Jawa Barat<br> Telp: 0822-1833-3364</p>')
+  jendelaCetak.document.write('<hr style="">');
+  jendelaCetak.document.write(divStruk.html());
+  jendelaCetak.document.write('<br>');
+  jendelaCetak.document.write('<h2 style="text-align: center;">TERIMA KASIH <br> TELAH BERKUNJUNG</h2>');
+  jendelaCetak.document.write('</body></html>');
+
+  // Selesaikan penulisan dokumen dan cetak
+  jendelaCetak.document.close();
+  jendelaCetak.print();
+
+  // Tutup jendela setelah mencetak
+  jendelaCetak.onafterprint = function() {
+    jendelaCetak.close();
+  };
+}
+
+
+function prosesPembayaran() {
+
+  cetakStruk();
+}
+
+
 $('#bayarButton').on('click', function () {
   const nominalBayar = parseFloat($('#bayar').val());
   const totalHargaModal = parseFloat($('#totalBayar').text().replace(/[^0-9.-]+/g, ''));
@@ -835,6 +875,7 @@ $('#bayarButton').on('click', function () {
            });
 
     $('#modalBayar').modal('hide');
+    prosesPembayaran();
   } else {
     Swal.fire({
     icon: 'error',
@@ -859,6 +900,8 @@ function disableButtons() {
 
   localStorage.setItem('buttonsDisabled', 'true');
 }
+
+
 
 
 

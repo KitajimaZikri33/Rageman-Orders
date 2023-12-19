@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rageman Order Menu</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css" >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <!-- Masukkan ini di dalam bagian head tag -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
@@ -208,7 +207,7 @@ table.rounded {
                                                         <th scope="col"></th>
                                                         <th scope="col"></th>
                                                       </tr>
-                                                      <tr>
+                                                      <tr class="table-secondary">
                                                         <th scope="col">Total Harga</th>
                                                         <th scope="col"></th>
                                                         <th scope="col"></th>
@@ -216,14 +215,14 @@ table.rounded {
                                                         <th id="totalBayar" scope="col" hidden></th>
                                                         <th></th>
                                                         </tr>
-                                                        <tr>
+                                                        <tr class="table-secondary">
                                                           <th scope="col">PPN 10%</th>
                                                           <th scope="col"></th>
                                                           <th scope="col"></th>
                                                           <th id="totalHargaPPN" scope="col"></th>
                                                           <th></th>
                                                         </tr>
-                                                        <tr>
+                                                        <tr class="table-secondary">
                                                           <th scope="col">Total Harga + PPN</th>
                                                           <th scope="col"></th>
                                                           <th scope="col"></th>
@@ -430,8 +429,7 @@ table.rounded {
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    <script src="bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

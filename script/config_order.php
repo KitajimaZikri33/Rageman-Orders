@@ -1,3 +1,4 @@
+<script type="module">
 import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
@@ -295,3 +296,4 @@ $(document).ready(function() {
 document.addEventListener('DOMContentLoaded', function() {
     getData();
 });
+</script>
