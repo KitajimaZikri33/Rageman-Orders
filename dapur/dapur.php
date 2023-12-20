@@ -47,7 +47,7 @@
     </div>
     </div>
 
-    <script type="module" src="script/config_food.js">
+    <?php include('script/config_food.php') ?>
 
     </script>
 

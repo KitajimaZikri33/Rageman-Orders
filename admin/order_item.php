@@ -396,7 +396,7 @@ table.rounded {
                 </div>
             </div>
 
-            <script type="module" src="script/config_order_item.js"></script>
+            <?php include('script/config_order_item.php') ?>
         </div>
     </div>
 

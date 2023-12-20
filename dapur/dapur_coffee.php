@@ -53,7 +53,7 @@
   </div>
 
 
-  <script type="module" src="script/config_coffee.js"></script>
+  <?php include('script/config_coffee.php') ?>
 
 </script>
 

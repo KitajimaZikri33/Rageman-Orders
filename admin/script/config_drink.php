@@ -1,34 +1,7 @@
-// Import the functions you need from the SDKs you need
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-import {
-    getDatabase,
-    set,
-    ref,
-    push,
-    child,
-    onValue,
-    remove
-} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+<script type="module">
 
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyCl187TfdE2U96gwo_Wg7HToa0YmRV5wWk",
-    authDomain: "rageman-orders.firebaseapp.com",
-    databaseURL: "https://rageman-orders-default-rtdb.firebaseio.com",
-    projectId: "rageman-orders",
-    storageBucket: "rageman-orders.appspot.com",
-    messagingSenderId: "998695493444",
-    appId: "1:998695493444:web:a10201af4430f73e414111"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-console.log('Firebase initialized successfully!', app);
-// Get a reference to the database service
-const database = getDatabase(app);
+<?php include('../firebase.js') ?>
 
 // write data
 const submitButton = document.getElementById('submitButton');
@@ -36,20 +9,20 @@ submitButton.addEventListener('click', (e) => {
     var Name = document.getElementById('Name').value;
     var Price = document.getElementById('Price').value;
 
-    const dbRef = ref(database, 'coffee');
-    const coffeeRef = push(dbRef);
+    const dbRef = ref(database, 'drink');
+    const drinkRef = push(dbRef);
 
     Swal.fire({
     icon: 'success',
-    title: 'Add Coffee Berhasil',
-    text: 'Add Coffee berhasil dilakukan.',
+    title: 'Add Minuman Berhasil',
+    text: 'Add Minuman berhasil dilakukan.',
     confirmButtonClass: 'btn btn-success',
     customClass: {
         title: 'alert-title',
         content: 'alert-text'
     }
 });
-    set(coffeeRef, {
+    set(drinkRef, {
         Name: Name,
         Price: Price
     }).then(() => {
@@ -68,7 +41,7 @@ const getData = () => {
     const dataTable = $('#dataTblBody');
 
     dataTable.empty();
-    const dbRef = ref(database, 'coffee/');
+    const dbRef = ref(database, 'drink/');
 
     onValue(dbRef, (snapshot) => {
         $('#dataTblBody td').remove();
@@ -89,7 +62,7 @@ const getData = () => {
                     <td>${childData.Name}</td>
                     <td>${formattedPrice}</td>
                     <td class="d-flex">
-                        <button class="btn btn-warning me-1" onclick="editData(this)">
+                         <button class="btn btn-warning me-1" onclick="editData(this)">
                             <i class="bi bi-pencil-square"></i>
                         </button>
                         <button class="btn btn-danger me-1" onclick="deleteData(this)">
@@ -131,7 +104,7 @@ const saveEdit = () => {
     const updatedPrice = $('#editPrice').val();
 
     // Perbarui data di Firebase
-    const dbRef = ref(database, 'coffee/' + key);
+    const dbRef = ref(database, 'drink/' + key);
 
     Swal.fire({
     icon: 'success',
@@ -156,7 +129,7 @@ const saveEdit = () => {
     });
 };
 
-
+// Fungsi untuk menghapus data
 const deleteData = (button) => {
     console.log('Delete button clicked');
 
@@ -178,11 +151,11 @@ const deleteData = (button) => {
             const row = button.closest('tr');
             const key = row.dataset.key;
 
-            const dbRef = ref(database, 'coffee/' + key);
+            const dbRef = ref(database, 'drink/' + key);
             remove(dbRef)
                 .then(() => {
                     console.log('Data deleted successfully');
-                    getData(); 
+                    getData();
                 })
                 .catch((error) => {
                     console.error("Error deleting data: ", error);
@@ -190,7 +163,6 @@ const deleteData = (button) => {
         }
     });
 };
-
 
 $(document).ready(function() {
     // Tambahkan event listener untuk tombol Edit dan Delete
@@ -211,3 +183,4 @@ $(document).ready(function() {
 document.addEventListener('DOMContentLoaded', function() {
     getData();
 });
+</script>

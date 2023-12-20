@@ -114,4 +114,4 @@
 
     </div>
 </div>
-<script type="module" src="script/config_laporan.js"></script>
+<?php include('script/config_laporan.php') ?>

@@ -48,7 +48,7 @@
     </div>
   </div>
 
-  <script type="module" src="script/config_drink.js">
+  <?php include('script/config_drink.php') ?>
 
   </script>
 

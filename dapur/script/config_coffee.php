@@ -1,29 +1,6 @@
-import {
-  initializeApp,
-  getApps,
-  getApp
-} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-import {
-  getDatabase,
-  ref,
-  onValue,
-  update
-} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+<script type="module">
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCl187TfdE2U96gwo_Wg7HToa0YmRV5wWk",
-  authDomain: "rageman-orders.firebaseapp.com",
-  databaseURL: "https://rageman-orders-default-rtdb.firebaseio.com",
-  projectId: "rageman-orders",
-  storageBucket: "rageman-orders.appspot.com",
-  messagingSenderId: "998695493444",
-  appId: "1:998695493444:web:a10201af4430f73e414111"
-};
-
-
-const firebaseApps = getApps();
-const app = firebaseApps.length === 0 ? initializeApp(firebaseConfig) : getApp();
+<?php include('../firebase.js') ?>
 
 
 const updateStatus = (orderId, itemKey) => {
@@ -138,3 +115,4 @@ $(document).ready(() => {
     updateStatusSiap(orderId, itemId);
   });
 });
+</script>

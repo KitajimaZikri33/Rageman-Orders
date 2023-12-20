@@ -70,7 +70,7 @@
                 </div>
             </div>
 
-    
+
             <div class="col-md table-responsive table-container">
                 <table class="table table-striped table-hover align-middle rounded" id="dataTbl">
                     <thead class="table-dark">
@@ -90,4 +90,4 @@
 
     </div>
 </div>
-<script type="module" src="script/config_food.js"></script>
+<?php include('script/config_food.php') ?>
