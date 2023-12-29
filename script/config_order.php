@@ -8,7 +8,6 @@ submitButton.addEventListener('click', (e) => {
     var Nomor = document.getElementById('Nomor').value;
     var Status = document.getElementById('status').value;
 
-    // Tambahkan baris ini untuk mendapatkan nilai tanggal dan waktu dari input hidden
     var DateTime = document.getElementById('datetimeDisplay').value;
 
     const dbRef = ref(database, 'orders');
@@ -71,11 +70,9 @@ function getData() {
             const childData = childSnapshot.val();
 
             if (childData.status === 'Success') {
-                // Jika status adalah 'Success', lanjutkan ke data berikutnya
                 return;
             }
 
-            // Update the row creation part in getData function
             var row = `<tr data-key="${childKey}" data-name="${childData.Name}" data-nomor="${childData.Nomor}" data-time="${childData.DateTime}">
                     <td>${rowNum}</td>
                     <td>${childData.Name}</td>
@@ -103,7 +100,6 @@ function getData() {
 }
 
 
-// Function to open edit modal
 const editData = (button) => {
     console.log('Edit button clicked');
     const row = button.closest('tr');
@@ -113,18 +109,16 @@ const editData = (button) => {
     const time = row.dataset.time;
     const status = row.dataset.status;
 
-    // Set modal input values
     $('#editKey').val(key);
     $('#editName').val(name);
     $('#editNomor').val(nomor);
     $('#datetimeHidden').val(time);
     $('#statusHidden').val(status);
 
-    // Open the modal
     $('#editModal').modal('show');
 };
 
-// Function to save edited data
+
 const saveEdit = () => {
     console.log('Save Changes clicked');
     const key = $('#editKey').val();
@@ -133,7 +127,6 @@ const saveEdit = () => {
     const updateTime = $('#datetimeHidden').val();
     const updateStatus = $('#statusHidden').val();
 
-    // Perbarui data di Firebase
     const dbRef = ref(database, 'orders/' + key);
 
     Swal.fire({
@@ -153,9 +146,8 @@ const saveEdit = () => {
         DateTime: updateTime,
         status: updateStatus
     }).then(() => {
-        // Sembunyikan modal setelah berhasil disimpan
         $('#editModal').modal('hide');
-        // Perbarui tampilan data
+        
         getData();
     }).catch((error) => {
         console.error("Error updating data: ", error);
@@ -165,19 +157,18 @@ const saveEdit = () => {
 const deleteData = (button) => {
     console.log('Delete button clicked');
 
-    // Tampilkan pesan konfirmasi penghapusan dengan SweetAlert2
     Swal.fire({
         icon: 'warning',
         title: 'Konfirmasi Penghapusan',
         text: 'Apakah Anda yakin ingin menghapus data ini?',
         showCancelButton: true,
-        confirmButtonClass: 'btn btn-danger',  // Untuk menyesuaikan tombol "Ya"
-        cancelButtonClass: 'btn btn-secondary', // Untuk menyesuaikan tombol "Batal"
+        confirmButtonClass: 'btn btn-danger',
+        cancelButtonClass: 'btn btn-secondary',
         confirmButtonText: 'Ya, Hapus',
         cancelButtonText: 'Batal',
         customClass: {
-            title: 'alert-title',  // Kelas kustom untuk judul
-            content: 'alert-text'   // Kelas kustom untuk teks
+            title: 'alert-title',
+            content: 'alert-text'
         }
     }).then((result) => {
         if (result.isConfirmed) {
@@ -188,7 +179,7 @@ const deleteData = (button) => {
             remove(dbRef)
                 .then(() => {
                     console.log('Data deleted successfully');
-                    getData(); // Refresh the data after deletion
+                    getData();
                 })
                 .catch((error) => {
                     console.error("Error deleting data: ", error);

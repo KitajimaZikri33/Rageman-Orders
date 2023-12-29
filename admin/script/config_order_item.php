@@ -733,7 +733,62 @@ function disableButtons() {
   $('#buttonBayar').prop('disabled', true);
 }
 
+function cetakStruk() {
+    var namaPelanggan = $('#orderName').val();
+    var kontenStruk = $('#dataTb2').clone();
+    var divStruk = $('<div id="strukCetak"></div>');
 
+    var tanggalWaktu = new Date();
+    var tanggalCetak = tanggalWaktu.toLocaleDateString();
+    var waktuCetak = tanggalWaktu.toLocaleTimeString([], {
+        hour12: false
+    });
+
+
+
+    divStruk.append('<div class="row">');
+    divStruk.append('<div class="col">');
+    divStruk.append('<p style="text-align: right;">' + tanggalCetak + ' - ' + waktuCetak + '</p>');
+    divStruk.append('</div>');
+    divStruk.append('<div class="col">');
+    divStruk.append('<p style="text-align: left;">Name : ' + namaPelanggan + '</p>');
+    divStruk.append('</div>');
+    divStruk.append('</div>');
+
+
+    divStruk.append(kontenStruk);
+
+    var jendelaCetak = window.open('', '_blank');
+
+    jendelaCetak.document.write(
+        '<html><head><title>Pembayaran</title><link <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.min.css"></head><body>'
+    );
+    jendelaCetak.document.write('<h1 style="text-align: center; font-weight: bold;"><br>RAGEMAN RESTO & COFFEE</h1>');
+    jendelaCetak.document.write(
+        '<p style="text-align: center;">Gunungkeling, Cigugur, Kuningan, Jawa Barat<br> Telp: 0822-1833-3364</p>')
+    jendelaCetak.document.write('<hr style="">');
+    jendelaCetak.document.write(divStruk.html());
+    jendelaCetak.document.write('<br>');
+    jendelaCetak.document.write('<h2 style="text-align: center;">TERIMA KASIH <br> TELAH BERKUNJUNG</h2>');
+    jendelaCetak.document.write('</body></html>');
+
+    jendelaCetak.document.close();
+    jendelaCetak.print();
+
+    jendelaCetak.onafterprint = function() {
+        jendelaCetak.close();
+    };
+}
+
+
+function prosesPembayaran() {
+
+    cetakStruk();
+}
+
+$('#printStruk').on('click', function() {
+    prosesPembayaran();
+});
 
 
 

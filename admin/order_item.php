@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rageman Order Menu</title>
-    <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <!-- Masukkan ini di dalam bagian head tag -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
@@ -113,7 +113,7 @@ table.rounded {
                                     <tr>
                                         <th scope="col" class="col-md-1">No</th>
                                         <th scope="col">Menu</th>
-                                        <th scope="col">Jumlah porsi</th>
+                                        <th scope="col">Qty</th>
                                         <th scope="col">Catatan</th>
                                         <th scope="col">Harga</th>
                                         <th scope="col">Total</th>
@@ -136,33 +136,45 @@ table.rounded {
                             </table>
 
 
+                            <div class="card-body">
+                                <div class="row g-2 mb-2">
+                                    <div class="col-3">
+                                        <button type="button" class="btn btn-outline-dark" id="printStruk">
+                                            <i class="bi bi-printer"></i>
+                                            Cetak Struk
+                                        </button>
+                                    </div>
+                                    <div class="col text-end">
+                                        <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                                            id="addCoffeeButton" data-bs-target="#exampleModalCoffee">
+                                            <i class="bi bi-plus-circle-fill"></i>
+                                            Add Coffee
+                                        </button>
+
+                                        <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                                            id="addMinumanButton" data-bs-target="#exampleModalDrink">
+                                            <i class="bi bi-plus-circle-fill"></i>
+                                            Add Minuman
+                                        </button>
+
+                                        <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                                            id="addMakananButton" data-bs-target="#exampleModalFood">
+                                            <i class="bi bi-plus-circle-fill"></i>
+                                            Add Makanan
+                                        </button>
+
+
+                                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                            id="buttonBayar" data-bs-target="#modalBayar">
+                                            <i class="bi bi-cash-coin"></i> Bayar
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
 
                             <div class="card-body">
-                                <h5 class="card-title text-end mb-1">
-                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" id="addCoffeeButton"
-                                        data-bs-target="#exampleModalCoffee">
-                                        <i class="bi bi-plus-circle-fill"></i>
-                                        Add Coffee
-                                    </button>
 
-                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" id="addMinumanButton"
-                                        data-bs-target="#exampleModalDrink">
-                                        <i class="bi bi-plus-circle-fill"></i>
-                                        Add Minuman
-                                    </button>
-
-                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" id="addMakananButton"
-                                        data-bs-target="#exampleModalFood">
-                                        <i class="bi bi-plus-circle-fill"></i>
-                                        Add Makanan
-                                    </button>
-
-
-                                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" id="buttonBayar"
-                                        data-bs-target="#modalBayar">
-                                        <i class="bi bi-cash-coin"></i> Bayar
-                                    </button>
-                                </h5>
                             </div>
 
 
@@ -180,12 +192,12 @@ table.rounded {
                                         <div class="modal-body">
 
                                             <div class="col-md table-responsive table-container">
-                                                <table class="table table-striped table-hover align-middle rounded"
+                                                <table class="table table-hover align-middle rounded"
                                                     id="dataTb2">
                                                     <thead class="table-info">
                                                         <tr>
                                                             <th scope="col">Menu</th>
-                                                            <th scope="col">Jumlah porsi</th>
+                                                            <th scope="col">Qty</th>
                                                             <th scope="col">Harga</th>
                                                             <th scope="col">Total</th>
                                                             <th scope="col">Harga Total + PPN(10%)</th>
@@ -218,7 +230,8 @@ table.rounded {
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" id="bayarButton" class="btn btn-success">Bayar</button>
+                                            <button type="button" id="bayarButton"
+                                                class="btn btn-success">Bayar</button>
                                         </div>
                                     </div>
                                 </div>

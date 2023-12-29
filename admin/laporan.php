@@ -1,9 +1,12 @@
 <div class="col-lg">
     <div class="card">
         <div class="card-header">
-            Halaman Order
+            Laporan
         </div>
         <div class="card-body">
+            <div class="mb-2">
+                <button type="button" class="btn btn-danger" id="deleteAll">Delete All Data</button>
+            </div>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -22,7 +25,8 @@
                                         <div class='col-sm'>
                                             <div class="form-group">
                                                 <div class='input-group date' id='datetimepicker'>
-                                                    <input type='text' class="form-control" id='datetimeDisplay' disabled>
+                                                    <input type='text' class="form-control" id='datetimeDisplay'
+                                                        disabled>
 
                                                 </div>
                                             </div>

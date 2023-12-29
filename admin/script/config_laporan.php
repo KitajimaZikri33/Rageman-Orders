@@ -196,6 +196,40 @@ const deleteData = (button) => {
     });
 };
 
+const deleteData2 = (button) => {
+    console.log('Delete button clicked');
+
+    // Tampilkan pesan konfirmasi penghapusan dengan SweetAlert2
+    Swal.fire({
+        icon: 'warning',
+        title: 'Konfirmasi Penghapusan',
+        text: 'Apakah Anda yakin ingin menghapus data ini?',
+        showCancelButton: true,
+        confirmButtonClass: 'btn btn-danger',  // Untuk menyesuaikan tombol "Ya"
+        cancelButtonClass: 'btn btn-secondary', // Untuk menyesuaikan tombol "Batal"
+        confirmButtonText: 'Ya, Hapus',
+        cancelButtonText: 'Batal',
+        customClass: {
+            title: 'alert-title',  // Kelas kustom untuk judul
+            content: 'alert-text'   // Kelas kustom untuk teks
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const database = getDatabase(); 
+
+            const dbRef = ref(database, 'orders');
+            remove(dbRef)
+                .then(() => {
+                    console.log('Data deleted successfully');
+                    getData(); // Refresh the data after deletion
+                })
+                .catch((error) => {
+                    console.error("Error deleting data: ", error);
+                });
+        }
+    });
+};
+
 
 async function setCurrentDateTime() {
     const datetimeDisplay = document.getElementById('datetimeDisplay');
@@ -249,6 +283,10 @@ $(document).ready(function() {
     $('#saveChangesButton').on('click', function() {
         saveEdit();
     });
+
+    $('#deleteAll').on('click', function() {
+        deleteData2();
+    })
 
 
     $(document).ready(function() {

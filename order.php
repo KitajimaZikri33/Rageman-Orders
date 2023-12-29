@@ -29,7 +29,8 @@
                                         <div class='col-sm'>
                                             <div class="form-group">
                                                 <div class='input-group date' id='datetimepicker'>
-                                                    <input type='text' class="form-control" id='datetimeDisplay' disabled>
+                                                    <input type='text' class="form-control" id='datetimeDisplay'
+                                                        disabled>
 
                                                 </div>
                                             </div>
