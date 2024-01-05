@@ -1,7 +1,7 @@
 <div class="col-lg-9 rounded" >
     <div class="card">
         <div class="card-header">
-            Halaman Input Makanan
+            Halaman Master Menu Makanan
         </div>
         <div class="card-body">
             <h5 class="card-title text-end"><button type="button" class="btn btn-primary" data-bs-toggle="modal"

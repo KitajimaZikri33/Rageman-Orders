@@ -1,5 +1,5 @@
 <div class="col-lg-3">
-    <nav class="navbar navbar-expand-lg bg-light rounded border">
+    <nav class="navbar navbar-expand-lg bg-light position-fixed rounded border">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
@@ -17,21 +17,21 @@
                             <a class="nav-link ps-2 <?php echo (isset($_GET['x']) && $_GET['x']== 'input_coffee') ? 'active link-light' : 'link-dark' ; ?>"
                                 aria-current="page" href="admin.php?x=input_coffee">
                                 <i class="bi bi-cup-hot"></i>
-                                Input Coffee</a>
+                                Master Menu Coffee</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link ps-2 <?php echo (isset($_GET['x']) && $_GET['x']=='input_drink') ? 'active link-light' : 'link-dark' ; ?>"
                                 href="admin.php?x=input_drink">
                                 <i class="bi bi-cup-straw"></i>
-                                Input Minuman</a>
+                                Master Menu Minuman</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link ps-2 <?php echo (isset($_GET['x']) && $_GET['x']=='input_food') ? 'active link-light' : 'link-dark' ; ?>"
                                 href="admin.php?x=input_food">
                                 <i class="bi bi-egg-fried"></i>
-                                Input Makanan</a>
+                                Master Menu Makanan</a>
                         </li>
 
                         <li class="nav-item">
